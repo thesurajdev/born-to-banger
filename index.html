@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boho Event Co.</title>
+  <!-- Using Roboto font from Google Fonts for a modern professional look -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Pastel Color Palette */
+      --pastel-orange: #FFD1A9;
+      --pastel-blue:  #A3C4F3;
+      --bg-color: #F9F9F9;
+      --text-color: #333;
+      --card-bg: #fff;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding-top: 4rem;
+      background-color: var(--pastel-blue);
+      color: var(--text-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 3rem 2rem;
+    }
+    
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Button */
+    .btn {
+      background-color: var(--pastel-orange);
+      color: var(--text-color);
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #e6b18b;
+    }
+    
+    /* Grid Utility */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    /* Card Component */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    
+    /* Form Styles */
+    form {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    form input, 
+    form textarea, 
+    form select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    /* FAQs Styles */
+    .faq-item {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    
+    .faq-item summary {
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    .faq-item p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Contact Section */
+    .contact-details {
+      text-align: center;
+    }
+    
+    .social-links a {
+      margin: 0 0.5rem;
+      font-weight: 700;
+      color: var(--pastel-orange);
+      text-decoration: none;
+    }
+    
+    .social-links a:hover {
+      color: var(--pastel-blue);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+    
+    footer a {
+      color: var(--pastel-orange);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Celebrate Art, Embrace Creativity</h2>
+    <p>Join Boho Event Co. to showcase your talent at exclusive events that connect artists with a passionate audience.</p>
+    <a href="#register" class="btn">Register Now</a>
+  </section>
+
+  <!-- About Boho Event Co. -->
+  <section id="about">
+    <h3>About Boho Event Co.</h3>
+    <p>We curate soulful, vibrant events that celebrate art, music, dance, fashion, and culture. Our mission is to build a community of creatives and inspire transformative collaborations between artists and audiences.</p>
+  </section>
+
+  <!-- Why Register as an Artist? -->
+  <section id="why">
+    <h3>Why Register as an Artist?</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Gain Exposure</h4>
+        <p>Showcase your work in front of a dedicated and engaged audience.</p>
+      </div>
+      <div class="card">
+        <h4>Networking</h4>
+        <p>Connect with fellow creatives, industry professionals, and influencers.</p>
+      </div>
+      <div class="card">
+        <h4>Professional Support</h4>
+        <p>Access resources, marketing support, and event promotions to advance your career.</p>
+      </div>
+      <div class="card">
+        <h4>Collaborative Opportunities</h4>
+        <p>Collaborate with brands and artistic partners on exciting projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Categories We Cover -->
+  <section id="categories">
+    <h3>Event Categories We Cover</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Live Music & Performances</h4>
+        <p>Intimate shows, festivals, and innovative live experiences.</p>
+      </div>
+      <div class="card">
+        <h4>Art & Craft Fairs</h4>
+        <p>Exhibitions and creative marketplaces showcasing diverse art forms.</p>
+      </div>
+      <div class="card">
+        <h4>Fashion Shows</h4>
+        <p>Elegant runway presentations and trendsetting style events.</p>
+      </div>
+      <div class="card">
+        <h4>Cultural Events</h4>
+        <p>Celebrating heritage and creative fusion in vibrant gatherings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Form -->
+  <section id="register">
+    <h3>Registration Form</h3>
+    <form>
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Phone Number" required />
+      <select required>
+        <option value="">Select Event Category</option>
+        <option value="art">Art</option>
+        <option value="music">Music</option>
+        <option value="dance">Dance</option>
+        <option value="fashion">Fashion</option>
+      </select>
+      <textarea placeholder="Tell us about your work" rows="4"></textarea>
+      <button type="submit" class="btn">Submit Registration</button>
+    </form>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faq">
+    <h3>Frequently Asked Questions</h3>
+    <details class="faq-item">
+      <summary>Is there any participation fee?</summary>
+      <p>Our registration is completely free. We focus on creating opportunities for emerging and established artists alike.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I register in more than one category?</summary>
+      <p>Absolutely! We encourage you to let us know if you work across multiple disciplines.</p>
+    </details>
+  </section>
+
+  <!-- Contact and Social Links -->
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <div class="contact-details">
+      <p>Email: <a href="mailto:info@bohoeventco.com">info@bohoeventco.com</a></p>
+      <p>Follow us on social media:</p>
+      <div class="social-links">
+        <a href="#" target="_blank">Instagram</a> |
+        <a href="#" target="_blank">Facebook</a> |
+        <a href="#" target="_blank">YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Boho Event Co. | Built with care to connect and inspire.</p>
+  </footer>
+
+</body>
+</html>

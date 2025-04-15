@@ -83,6 +83,8 @@
       border-radius: 30px;
       font-size: 1rem;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
       transition: background 0.3s ease;
     }
     
@@ -113,34 +115,6 @@
       padding: 1.5rem;
       box-shadow: var(--shadow);
       text-align: center;
-    }
-    
-    /* Form Styles */
-    form {
-      background-color: var(--card-bg);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      max-width: 600px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    form input, 
-    form textarea, 
-    form select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-    
-    form textarea {
-      resize: vertical;
-      min-height: 100px;
     }
     
     /* FAQs Styles */
@@ -201,7 +175,7 @@
   <section class="hero">
     <h2>Celebrate Art, Embrace Creativity</h2>
     <p>Join Boho Event Co. to showcase your talent at exclusive events that connect artists with a passionate audience.</p>
-    <a href="#register" class="btn">Register Now</a>
+    <a href="#register" class="btn">Learn More</a>
   </section>
 
   <!-- About Boho Event Co. -->
@@ -256,23 +230,13 @@
     </div>
   </section>
 
-  <!-- Registration Form -->
+  <!-- Registration Section Linking to Google Form -->
   <section id="register">
-    <h3>Registration Form</h3>
-    <form>
-      <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <input type="text" placeholder="Phone Number" required />
-      <select required>
-        <option value="">Select Event Category</option>
-        <option value="art">Art</option>
-        <option value="music">Music</option>
-        <option value="dance">Dance</option>
-        <option value="fashion">Fashion</option>
-      </select>
-      <textarea placeholder="Tell us about your work" rows="4"></textarea>
-      <button type="submit" class="btn">Submit Registration</button>
-    </form>
+    <h3>Register as an Artist</h3>
+    <p>If you're ready to showcase your talent at our events, please click the button below to complete our registration form.</p>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="https://forms.gle/your-google-form-link" class="btn" target="_blank">Go to Registration Form</a>
+    </div>
   </section>
 
   <!-- FAQs -->

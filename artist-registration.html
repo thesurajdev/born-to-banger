@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Boho Event Co.</title>
-  <!-- Using Roboto font from Google Fonts for a modern professional look -->
+  <!-- Roboto font for a modern, professional look -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -35,6 +35,17 @@
       line-height: 1.6;
     }
     
+    /* Logo Section */
+    .logo-section {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    
+    .logo-section img {
+      max-width: 150px;
+      height: auto;
+    }
+    
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
@@ -56,12 +67,11 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding-top: 4rem;
+      padding: 4rem 2rem;
       background-color: var(--pastel-blue);
       color: var(--text-color);
       border-radius: 8px;
       box-shadow: var(--shadow);
-      padding: 3rem 2rem;
     }
     
     .hero h2 {
@@ -100,21 +110,28 @@
     }
     
     @media (min-width: 768px) {
+      /* For sections with two cards */
       .grid-2 {
         grid-template-columns: repeat(2, 1fr);
       }
+      /* For sections with three cards per row */
       .grid-3 {
         grid-template-columns: repeat(3, 1fr);
       }
     }
     
-    /* Card Component */
+    /* Card Component with Icon Box */
     .card {
       background-color: var(--card-bg);
       border-radius: 8px;
       padding: 1.5rem;
       box-shadow: var(--shadow);
       text-align: center;
+    }
+    
+    .card .icon {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
     }
     
     /* FAQs Styles */
@@ -171,74 +188,117 @@
 </head>
 <body>
 
+  <!-- Logo Section -->
+  <div class="logo-section">
+    <!-- Replace placeholder with your actual logo -->
+    <img src="https://via.placeholder.com/150?text=Logo" alt="Boho Event Co. Logo">
+  </div>
+  
   <!-- Hero Section -->
   <section class="hero">
     <h2>Celebrate Art, Embrace Creativity</h2>
     <p>Join Boho Event Co. to showcase your talent at exclusive events that connect artists with a passionate audience.</p>
     <a href="#register" class="btn">Learn More</a>
   </section>
-
+  
   <!-- About Boho Event Co. -->
   <section id="about">
     <h3>About Boho Event Co.</h3>
     <p>We curate soulful, vibrant events that celebrate art, music, dance, fashion, and culture. Our mission is to build a community of creatives and inspire transformative collaborations between artists and audiences.</p>
   </section>
-
-  <!-- Why Register as an Artist? -->
+  
+  <!-- Why Register as an Artist? with Icon Boxes -->
   <section id="why">
     <h3>Why Register as an Artist?</h3>
     <div class="grid grid-2">
       <div class="card">
+        <div class="icon">🎨</div>
         <h4>Gain Exposure</h4>
         <p>Showcase your work in front of a dedicated and engaged audience.</p>
       </div>
       <div class="card">
+        <div class="icon">🤝</div>
         <h4>Networking</h4>
         <p>Connect with fellow creatives, industry professionals, and influencers.</p>
       </div>
       <div class="card">
+        <div class="icon">💼</div>
         <h4>Professional Support</h4>
         <p>Access resources, marketing support, and event promotions to advance your career.</p>
       </div>
       <div class="card">
+        <div class="icon">🤩</div>
         <h4>Collaborative Opportunities</h4>
         <p>Collaborate with brands and artistic partners on exciting projects.</p>
       </div>
     </div>
   </section>
-
-  <!-- Event Categories We Cover -->
+  
+  <!-- Categories We Cover with Icon Boxes -->
   <section id="categories">
-    <h3>Event Categories We Cover</h3>
-    <div class="grid grid-2">
+    <h3>Categories We Cover</h3>
+    <div class="grid grid-3">
       <div class="card">
-        <h4>Live Music & Performances</h4>
-        <p>Intimate shows, festivals, and innovative live experiences.</p>
+        <div class="icon">🎨</div>
+        <h4>Caricature Artist</h4>
       </div>
       <div class="card">
-        <h4>Art & Craft Fairs</h4>
-        <p>Exhibitions and creative marketplaces showcasing diverse art forms.</p>
+        <div class="icon">💄</div>
+        <h4>Mini Parlor</h4>
+        <p style="font-size:0.9rem;">(e.g., nail art, quick makeover)</p>
       </div>
       <div class="card">
-        <h4>Fashion Shows</h4>
-        <p>Elegant runway presentations and trendsetting style events.</p>
+        <div class="icon">🖌️</div>
+        <h4>Portrait Artist</h4>
       </div>
       <div class="card">
-        <h4>Cultural Events</h4>
-        <p>Celebrating heritage and creative fusion in vibrant gatherings.</p>
+        <div class="icon">🎨</div>
+        <h4>Face Painting</h4>
+      </div>
+      <div class="card">
+        <div class="icon">🖋️</div>
+        <h4>Tattoo Artist</h4>
+      </div>
+      <div class="card">
+        <div class="icon">🎤</div>
+        <h4>Anchor / Host</h4>
+      </div>
+      <div class="card">
+        <div class="icon">🎩</div>
+        <h4>Magician</h4>
+      </div>
+      <div class="card">
+        <div class="icon">🔮</div>
+        <h4>Astrologer</h4>
+      </div>
+      <div class="card">
+        <div class="icon">🎲</div>
+        <h4>Game Host / Activity Expert</h4>
+      </div>
+      <div class="card">
+        <div class="icon">📸</div>
+        <h4>Photographer</h4>
+      </div>
+      <div class="card">
+        <div class="icon">🎥</div>
+        <h4>Videographer</h4>
+      </div>
+      <div class="card">
+        <div class="icon">❓</div>
+        <h4>Other</h4>
       </div>
     </div>
   </section>
-
+  
   <!-- Registration Section Linking to Google Form -->
   <section id="register">
     <h3>Register as an Artist</h3>
     <p>If you're ready to showcase your talent at our events, please click the button below to complete our registration form.</p>
     <div style="text-align: center; margin-top: 2rem;">
-      <a href="https://forms.gle/your-google-form-link" class="btn" target="_blank">Go to Registration Form</a>
+      <a href="https://forms.gle/jrqQRhAogtY27rqm6" class="btn" target="_blank">Go to Registration Form</a>
     </div>
   </section>
-
+  
   <!-- FAQs -->
   <section id="faq">
     <h3>Frequently Asked Questions</h3>
@@ -250,22 +310,33 @@
       <summary>Can I register in more than one category?</summary>
       <p>Absolutely! We encourage you to let us know if you work across multiple disciplines.</p>
     </details>
+    <details class="faq-item">
+      <summary>How do I receive confirmation after I register?</summary>
+      <p>After you submit your registration via the Google Form, a confirmation email with additional details will be sent to your registered email address.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does the registration process take?</summary>
+      <p>The registration process typically takes just a few minutes. Once submitted, our team will review your details and get back to you promptly.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How will my data be used?</summary>
+      <p>Your information will only be used for the purpose of event coordination and artist selection. We value your privacy and never share your details with third parties without your consent.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Who can I contact if I have more questions?</summary>
+      <p>If you have any additional questions or need further assistance, feel free to contact us at <a href="mailto:bohoeventcoordinator@gmail.com">bohoeventcoordinator@gmail.com</a> and we will be happy to help.</p>
+    </details>
   </section>
-
+  
   <!-- Contact and Social Links -->
   <section id="contact">
     <h3>Contact Us</h3>
     <div class="contact-details">
-      <p>Email: <a href="mailto:info@bohoeventco.com">info@bohoeventco.com</a></p>
-      <p>Follow us on social media:</p>
-      <div class="social-links">
-        <a href="#" target="_blank">Instagram</a> |
-        <a href="#" target="_blank">Facebook</a> |
-        <a href="#" target="_blank">YouTube</a>
-      </div>
+      <p>Email: <a href="mailto:bohoeventcoordinator@gmail.com">bohoeventcoordinator@gmail.com</a></p>
+      <p>Follow us on Instagram: <a href="https://instagram.com/bohoeventcoordinator" target="_blank">bohoeventcoordinator</a></p>
     </div>
   </section>
-
+  
   <!-- Footer -->
   <footer>
     <p>© 2025 Boho Event Co. | Built with care to connect and inspire.</p>

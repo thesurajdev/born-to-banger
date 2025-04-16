@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boho Sweet Giveaway</title>
+  <!-- Roboto font for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Pastel color palette */
+      --pastel-orange: #FFD1A9;
+      --pastel-blue:  #A3C4F3;
+      --bg-color: #F9F9F9;
+      --text-color: #333;
+      --card-bg: #fff;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    /* Header / Logo Section */
+    .logo-section {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    
+    .logo-section img {
+      max-width: 150px;
+      height: auto;
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: var(--pastel-blue);
+      color: var(--text-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Button */
+    .btn {
+      background-color: var(--pastel-orange);
+      color: var(--text-color);
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #e6b18b;
+    }
+    
+    /* Card Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    /* Card Component */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    
+    .card .icon {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    
+    /* FAQs */
+    .faq-item {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    
+    .faq-item summary {
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    .faq-item p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Contact Section */
+    .contact-details {
+      text-align: center;
+    }
+    
+    .social-links a {
+      margin: 0 0.5rem;
+      font-weight: 700;
+      color: var(--pastel-orange);
+      text-decoration: none;
+    }
+    
+    .social-links a:hover {
+      color: var(--pastel-blue);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+    
+    footer a {
+      color: var(--pastel-orange);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo Section -->
+  <div class="logo-section">
+    <!-- Replace placeholder with your actual logo -->
+    <img src="Media/Boho_Logo.png" alt="Boho Event Co. Logo">
+  </div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Welcome to Boho's Sweet Giveaway!</h2>
+    <p>
+      Visit our stand at the market, scan the QR code on our standee, and learn how you can claim a free chocolate for your child!
+    </p>
+    <a href="#register" class="btn">Claim Your Chocolate</a>
+  </section>
+  
+  <!-- About Boho Event Co. Section -->
+  <section id="about">
+    <h3>About Boho Event Co.</h3>
+    <p>
+      At Boho, we celebrate creativity and community. Our events bring together families, children, and art lovers in a vibrant, interactive experience.
+    </p>
+  </section>
+  
+  <!-- Giveaway Details Section -->
+  <section id="giveaway">
+    <h3>How It Works</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="icon">📱</div>
+        <h4>Scan the QR Code</h4>
+        <p>
+          Find our standee at the market and scan the QR code to land on this page.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon">📝</div>
+        <h4>Fill Out the Form</h4>
+        <p>
+          Click the button below, complete our quick Google Form, and secure your free chocolate voucher.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon">🍫</div>
+        <h4>Enjoy the Treat</h4>
+        <p>
+          Upon validation, each child will receive a complimentary chocolate treat.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon">🎉</div>
+        <h4>Join the Celebration</h4>
+        <p>
+          Experience the fun, community spirit, and creativity that Boho Event Co. is known for.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Registration Section -->
+  <section id="register">
+    <h3>Register for Your Free Chocolate</h3>
+    <p>
+      Ready to treat your child? Click the button below to fill out our registration form. It takes less than a minute!
+    </p>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="https://forms.gle/mSBjokmHo1rWyu1t5" class="btn" target="_blank">Go to Registration Form</a>
+    </div>
+  </section>
+  
+  <!-- FAQs Section -->
+  <section id="faq">
+    <h3>Frequently Asked Questions</h3>
+    <details class="faq-item">
+      <summary>Is there any participation fee?</summary>
+      <p>
+        No, registration is absolutely free!
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>How do I qualify for a free chocolate?</summary>
+      <p>
+        Simply fill out the registration form after scanning the QR code. Once your submission is approved, your child will receive a chocolate voucher.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I register more than once?</summary>
+      <p>
+        We welcome every family, but each registration should be unique per child to ensure fair participation.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>How will I know if my submission is approved?</summary>
+      <p>
+        A confirmation email will be sent to you after we review your submission.
+      </p>
+    </details>
+    <details class="faq-item">
+      <summary>Who do I contact if I have questions?</summary>
+      <p>
+        Please reach out to us at <a href="mailto:bohoeventcoordinator@gmail.com">bohoeventcoordinator@gmail.com</a> for any inquiries.
+      </p>
+    </details>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <div class="contact-details">
+      <p>Email: <a href="mailto:bohoeventcoordinator@gmail.com">bohoeventcoordinator@gmail.com</a></p>
+      <p>Follow us on Instagram: <a href="https://instagram.com/bohoeventcoordinator" target="_blank">bohoeventcoordinator</a></p>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Boho Event Co. | Celebrating creativity and community one smile at a time.</p>
+  </footer>
+
+</body>
+</html>

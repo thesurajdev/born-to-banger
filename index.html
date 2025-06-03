@@ -12,6 +12,13 @@
   
   <!-- Montserrat Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- AOS - Animate On Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,11 +34,17 @@
           animation: {
             'fade-in': 'fadeIn 1s ease forwards',
             'bounce-slow': 'bounce 2s infinite',
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
           },
           keyframes: {
             fadeIn: {
               '0%': { opacity: 0, transform: 'translateY(10px)' },
               '100%': { opacity: 1, transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
             },
           },
           fontFamily: {
@@ -41,6 +54,219 @@
       },
     }
   </script>
+
+  <!-- Custom Styles -->
+  <style>
+    /* Smooth scrolling for the whole page */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #fd1f4a;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e2173d;
+    }
+
+    /* Gradient text animation */
+    .gradient-text {
+      background: linear-gradient(270deg, #fd1f4a, #ff5a7d, #fd1f4a);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 3s linear infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Hover effects for cards */
+    .hover-card {
+      transition: all 0.3s ease;
+    }
+
+    .hover-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Loading animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .loading.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Add consistent spacing between sections */
+    section {
+      scroll-margin-top: 80px; /* For smooth scrolling with fixed header */
+    }
+
+    /* Consistent heading styles */
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Consistent paragraph spacing */
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Consistent card spacing */
+    .hover-card {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Consistent grid gap */
+    .grid {
+      gap: 2rem;
+    }
+
+    /* Consistent button spacing */
+    button, .btn {
+      margin: 0.5rem;
+    }
+
+    /* Consistent list spacing */
+    ul, ol {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Consistent image spacing */
+    img {
+      margin-bottom: 1rem;
+    }
+
+    /* Consistent container max-width */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 4rem;
+      }
+    }
+
+    @keyframes slideLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes slideRight {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    .animate-slide-left {
+      animation: slideLeft 30s linear infinite;
+      display: flex;
+      width: max-content;
+    }
+
+    .animate-slide-right {
+      animation: slideRight 30s linear infinite;
+      display: flex;
+      width: max-content;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @keyframes slideLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes slideRight {
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
+    }
+
+    .animate-slide-left, .animate-slide-right {
+      animation-duration: 40s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      perspective: 1000;
+      -webkit-perspective: 1000;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+    }
+
+    .animate-slide-left {
+      animation-name: slideLeft;
+    }
+
+    .animate-slide-right {
+      animation-name: slideRight;
+    }
+
+    /* Card spacing */
+    .min-w-\[240px\] {
+      margin-right: 2rem; /* Explicit margin for consistent spacing */
+    }
+
+    /* Remove last card margin to prevent extra space */
+    .min-w-\[240px\]:last-child {
+      margin-right: 0;
+    }
+
+    /* Ensure smooth animation */
+    .animate-slide-left, .animate-slide-right {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      perspective: 1000;
+      -webkit-perspective: 1000;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+    }
+  </style>
 
   <!-- SEO: canonical URL, Open Graph tags -->
   <link rel="canonical" href="https://www.borntobanger.com" />
@@ -57,7 +283,7 @@
 
  <header 
   id="hero" 
-  class="relative flex flex-col justify-center items-center min-h-screen bg-white text-black overflow-hidden font-sans px-6 sm:px-12 lg:px-24"
+  class="relative flex flex-col justify-center items-center min-h-[90vh] bg-white text-black overflow-hidden font-sans px-6 sm:px-12 lg:px-24"
   aria-label="Hero Section - Born TO Banger Event Company"
 >
   <!-- Background subtle pink gradient overlay -->
@@ -68,52 +294,54 @@
     src="https://img.icons8.com/ios-filled/100/000000/confetti.png" 
     alt="" 
     aria-hidden="true"
-    class="absolute top-10 left-6 w-12 opacity-40 pointer-events-none"
+    class="absolute top-10 left-6 w-12 opacity-40 pointer-events-none animate-float"
     data-parallax-speed="0.05"
   />
   <img 
     src="https://img.icons8.com/ios-filled/100/000000/party-balloon.png" 
     alt="" 
     aria-hidden="true"
-    class="absolute bottom-20 right-10 w-14 opacity-30 pointer-events-none"
+    class="absolute bottom-20 right-10 w-14 opacity-30 pointer-events-none animate-float"
+    style="animation-delay: 0.5s;"
     data-parallax-speed="0.08"
   />
   <img 
     src="https://img.icons8.com/ios-filled/100/000000/party-hat.png" 
     alt="" 
     aria-hidden="true"
-    class="absolute top-1/2 right-1/4 w-10 opacity-35 pointer-events-none"
+    class="absolute top-1/2 right-1/4 w-10 opacity-35 pointer-events-none animate-float"
+    style="animation-delay: 1s;"
     data-parallax-speed="0.03"
   />
 
   <!-- Logo -->
-  <div class="mb-6 animate-fade-in">
+  <div class="mb-6" data-aos="fade-down" data-aos-delay="200">
     <img 
-      src="https://via.placeholder.com/128x128?text=Born+TO+Banger" 
+      src="Born To Banger Logo.png" 
       alt="Born TO Banger Logo" 
-      class="w-32 h-auto mx-auto"
+      class="w-40 sm:w-48 md:w-56 h-auto mx-auto hover:scale-110 transition-transform duration-300"
       loading="lazy"
-      width="128"
+      width="224"
       height="auto"
     />
   </div>
 
   <!-- Tagline -->
-  <h1 class="text-center text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight max-w-4xl animate-fade-in mb-4" style="animation-delay: 0.4s;">
+  <h1 class="text-center text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight max-w-4xl mb-4 gradient-text" data-aos="fade-up" data-aos-delay="400">
     Every Party Drops Like a <span class="text-pinkAccent">Banger</span>
   </h1>
 
   <!-- Short description paragraph -->
-  <p class="text-center max-w-2xl text-lg text-gray-700 mb-8 animate-fade-in" style="animation-delay: 0.5s;">
+  <p class="text-center max-w-2xl text-lg text-gray-700 mb-8" data-aos="fade-up" data-aos-delay="600">
     Creating unforgettable celebrations with premium decorations, fun activities, and vibrant themes.<br />
     Let Born TO Banger turn your special moments into lifelong memories.
   </p>
 
   <!-- Call to Action Buttons in a nav for semantics -->
-  <nav class="flex flex-col sm:flex-row gap-4 animate-fade-in" style="animation-delay: 0.7s;" aria-label="Primary call to action buttons">
+  <nav class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="800" aria-label="Primary call to action buttons">
     <a 
       href="#contact" 
-      class="bg-pinkAccent hover:bg-pinkAccent/90 text-white font-semibold rounded-lg px-8 py-3 shadow-lg transition-all duration-300 text-center"
+      class="bg-pinkAccent hover:bg-pinkAccent/90 text-white font-semibold rounded-lg px-8 py-3 shadow-lg transition-all duration-300 text-center hover:scale-105 transform"
       role="button"
       tabindex="0"
     >
@@ -121,7 +349,7 @@
     </a>
     <a 
       href="#gallery" 
-      class="border-2 border-pinkAccent hover:bg-pinkAccent hover:text-white text-pinkAccent font-semibold rounded-lg px-8 py-3 shadow-lg transition-all duration-300 text-center"
+      class="border-2 border-pinkAccent hover:bg-pinkAccent hover:text-white text-pinkAccent font-semibold rounded-lg px-8 py-3 shadow-lg transition-all duration-300 text-center hover:scale-105 transform"
       role="button"
       tabindex="0"
     >
@@ -130,7 +358,7 @@
   </nav>
 
   <!-- Down arrow scroll indicator -->
-  <div class="absolute bottom-8 animate-bounce-slow" aria-hidden="true">
+  <div class="absolute bottom-8 animate-bounce-slow" aria-hidden="true" data-aos="fade-up" data-aos-delay="1000">
     <svg class="w-6 h-6 text-pinkAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
     </svg>
@@ -157,12 +385,13 @@
 
 <section 
   id="about" 
-  class="max-w-5xl mx-auto px-6 sm:px-12 lg:px-24 py-20 text-center relative"
+  class="max-w-5xl mx-auto px-6 sm:px-12 lg:px-24 py-24 text-center relative"
   aria-labelledby="about-heading"
 >
   <h2 
     id="about-heading" 
-    class="text-3xl sm:text-4xl font-extrabold mb-8 text-black"
+    class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text"
+    data-aos="fade-up"
   >
     About Born TO Banger
   </h2>
@@ -210,134 +439,415 @@
   </div>
 </section>
 
+<!-- Parallax Section -->
+<section class="relative h-[40vh] w-full overflow-hidden">
+  <!-- Decorative line -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#fd1f4a] to-transparent"></div>
+  
+  <!-- Parallax Background -->
+  <div class="absolute inset-0" style="background: url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center center/cover fixed;" data-parallax-speed="0.5"></div>
+  
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+  
+  <!-- Content -->
+  <div class="relative h-full flex items-center justify-center">
+    <h2 class="text-4xl md:text-5xl font-bold text-white text-center px-4" data-aos="fade-up">
+      Creating Unforgettable Moments
+    </h2>
+  </div>
+</section>
+
+<!-- Dual Slider Section -->
+<section class="py-24 bg-white text-black overflow-x-hidden space-y-12">
+  <div class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 mb-12">
+    <h2 class="text-4xl font-extrabold mb-4 text-center tracking-tight gradient-text">Our Talented Artists</h2>
+    <p class="text-center text-gray-700 mb-12 max-w-xl mx-auto">Meet our creative professionals who bring your celebrations to life with their unique talents and passion.</p>
+  </div>
+  <!-- Top Slider -->
+  <div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white via-white/90 to-transparent z-10"></div>
+    <div class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white via-white/90 to-transparent z-10"></div>
+    <div class="w-full overflow-hidden">
+      <div id="top-slider" class="flex w-[200%] animate-scroll-left gap-4"></div>
+    </div>
+  </div>
+  <!-- Bottom Slider -->
+  <div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white via-white/90 to-transparent z-10"></div>
+    <div class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white via-white/90 to-transparent z-10"></div>
+    <div class="w-full overflow-hidden">
+      <div id="bottom-slider" class="flex w-[200%] animate-scroll-right gap-4"></div>
+    </div>
+  </div>
+  <template id="topCardTemplate">
+    <div class="flex-shrink-0 w-[40vw] sm:w-[30vw] md:w-[20vw] lg:w-[10vw] relative group">
+      <img src="" alt="Image" class="w-full h-auto rounded-[16px] transition-transform duration-300 group-hover:scale-105" />
+      <div class="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-center p-2 md:opacity-0 md:translate-y-full md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+        <h3 class="text-sm font-semibold">Title</h3>
+        <p class="text-xs text-gray-300">Category</p>
+      </div>
+    </div>
+  </template>
+  <template id="bottomCardTemplate">
+    <div class="flex-shrink-0 w-[40vw] sm:w-[40vw] md:w-[20vw] lg:w-[10vw] relative group">
+      <img src="" alt="Image" class="w-full h-auto rounded-[16px] transition-transform duration-300 group-hover:scale-105" />
+      <div class="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-center p-2 md:opacity-0 md:translate-y-full md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+        <h3 class="text-sm font-semibold">Title</h3>
+        <p class="text-xs text-gray-300">Category</p>
+      </div>
+    </div>
+  </template>
+  <script>
+    // Top slider data and rendering
+    const topSlider = document.getElementById("top-slider");
+    const topCard = document.getElementById("topCardTemplate").content;
+    const topData = [
+      { src: 101, title: "Mountains", category: "Nature" },
+      { src: 102, title: "River", category: "Water" },
+      { src: 103, title: "City Life", category: "Urban" },
+      { src: 104, title: "Sunset", category: "Evening" },
+      { src: 105, title: "Wilderness", category: "Forest" },
+      { src: 106, title: "Architecture", category: "Design" },
+      { src: 107, title: "Ocean", category: "Sea" },
+      { src: 108, title: "Bridge", category: "Structure" },
+      { src: 109, title: "Night Sky", category: "Stars" },
+      { src: 110, title: "Flowers", category: "Nature" },
+    ];
+    for (let i = 0; i < 2; i++) {
+      topData.forEach(({ src, title, category }) => {
+        const clone = topCard.cloneNode(true);
+        clone.querySelector("img").src = `https://picsum.photos/id/${src}/400/600`;
+        clone.querySelector("h3").textContent = title;
+        clone.querySelector("p").textContent = category;
+        topSlider.appendChild(clone);
+      });
+    }
+    // Bottom slider data and rendering
+    const bottomSlider = document.getElementById("bottom-slider");
+    const bottomCard = document.getElementById("bottomCardTemplate").content;
+    const bottomData = [
+      { src: 201, title: "Fields", category: "Farming" },
+      { src: 202, title: "Boats", category: "Transport" },
+      { src: 203, title: "Market", category: "Street" },
+      { src: 204, title: "Desert", category: "Drylands" },
+      { src: 205, title: "Animals", category: "Wildlife" },
+      { src: 206, title: "Skyline", category: "City" },
+      { src: 207, title: "Rain", category: "Weather" },
+      { src: 208, title: "Beach", category: "Relax" },
+      { src: 209, title: "Snow", category: "Winter" },
+      { src: 210, title: "Sunrise", category: "Morning" },
+    ];
+    for (let i = 0; i < 2; i++) {
+      bottomData.forEach(({ src, title, category }) => {
+        const clone = bottomCard.cloneNode(true);
+        clone.querySelector("img").src = `https://picsum.photos/id/${src}/400/600`;
+        clone.querySelector("h3").textContent = title;
+        clone.querySelector("p").textContent = category;
+        bottomSlider.appendChild(clone);
+      });
+    }
+  </script>
+  <style>
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scroll-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .animate-scroll-left {
+      animation: scroll-left 30s linear infinite;
+    }
+    .animate-scroll-right {
+      animation: scroll-right 30s linear infinite;
+    }
+  </style>
+</section>
 
 <!--Service Section-->
 <section 
   id="services" 
-  class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-20"
+  class="w-full py-24 relative"
   aria-labelledby="services-heading"
 >
-  <h2 
-    id="services-heading" 
-    class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight"
-  >
-    Our Services
-  </h2>
+  <!-- Background subtle pink gradient overlay -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-pinkAccent/20 via-white/80 to-white/100 animate-fade-in"></div>
 
-  <p class="max-w-2xl mx-auto mb-12 text-center text-gray-700 text-lg">
-    From intimate celebrations to grand events, we provide all the creative touches and essentials to make your party truly unforgettable.
-  </p>
+  <div class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24">
+    <h2 
+      id="services-heading" 
+      class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text"
+      data-aos="fade-up"
+    >
+      Our Services
+    </h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-    <!-- Celebrations -->
-    <article tabindex="0" class="group bg-white border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-pink-500">
-      <div class="flex items-center justify-center mb-6 text-pink-500">
-        <!-- Heroicons: Sparkles Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 4a1 1 0 112 0 1 1 0 01-2 0zM5 8a1 1 0 112 0 1 1 0 01-2 0zM17 8a1 1 0 112 0 1 1 0 01-2 0zM12 20a1 1 0 112 0 1 1 0 01-2 0zM16.243 7.757l.707.707-2.829 2.829-.707-.707 2.829-2.829zM7.757 16.243l.707.707-2.829 2.829-.707-.707 2.829-2.829zM4 11h2m12 0h2m-6-6v2m0 12v2"/>
-        </svg>
-      </div>
-      <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Celebrations</h3>
-      <ul class="text-gray-700 space-y-2 text-base list-disc list-inside leading-relaxed">
-        <li>Birthdays</li>
-        <li>Baby Showers</li>
-        <li>Anniversaries</li>
-        <li>House Parties</li>
-      </ul>
-    </article>
+    <p class="max-w-2xl mx-auto mb-12 text-center text-gray-700 text-lg" data-aos="fade-up" data-aos-delay="200">
+      From intimate celebrations to grand events, we provide all the creative touches and essentials to make your party truly unforgettable.
+    </p>
 
-    <!-- Activities -->
-    <article tabindex="0" class="group bg-white border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-pink-500">
-      <div class="flex items-center justify-center mb-6 text-pink-500">
-        <!-- Heroicons: Paint Brush Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15.232 5.232l3.536 3.536m-2.036-1.5a2.828 2.828 0 01-4 4L6 17l2 2 6.732-6.732a2.828 2.828 0 014-4z"/>
-        </svg>
-      </div>
-      <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Activities</h3>
-      <ul class="text-gray-700 space-y-2 text-base list-disc list-inside leading-relaxed">
-        <li>Face Painting</li>
-        <li>Caricature</li>
-        <li>Temporary Tattoos</li>
-        <li>Games</li>
-        <li>Art &amp; Craft</li>
-      </ul>
-    </article>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <!-- Celebrations -->
+      <article 
+        tabindex="0" 
+        class="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] hover-card"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <div class="flex items-center justify-center mb-6 text-[#fd1f4a]">
+          <i class="fas fa-birthday-cake text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+        </div>
+        <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Celebrations</h3>
+        <ul class="text-gray-700 space-y-2 text-base list-none leading-relaxed">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-cake-candles text-[#fd1f4a]"></i>
+            <span>Birthdays</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-baby text-[#fd1f4a]"></i>
+            <span>Baby Showers</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-heart text-[#fd1f4a]"></i>
+            <span>Anniversaries</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-house text-[#fd1f4a]"></i>
+            <span>House Parties</span>
+          </li>
+        </ul>
+      </article>
 
-    <!-- Decor & Add-ons -->
-    <article tabindex="0" class="group bg-white border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-pink-500">
-      <div class="flex items-center justify-center mb-6 text-pink-500">
-        <!-- Heroicons: Musical Note Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 19V6l12-2v13"/>
-          <circle cx="6" cy="18" r="3"/>
-          <circle cx="18" cy="16" r="3"/>
-        </svg>
-      </div>
-      <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Decor & Add-ons</h3>
-      <ul class="text-gray-700 space-y-2 text-base list-disc list-inside leading-relaxed">
-        <li>Balloon Arches</li>
-        <li>Custom Themes</li>
-        <li>Host</li>
-        <li>Music</li>
-        <li>Photographer</li>
-      </ul>
-    </article>
+      <!-- Activities -->
+      <article 
+        tabindex="0" 
+        class="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] hover-card"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
+        <div class="flex items-center justify-center mb-6 text-[#fd1f4a]">
+          <i class="fas fa-paint-brush text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+        </div>
+        <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Activities</h3>
+        <ul class="text-gray-700 space-y-2 text-base list-none leading-relaxed">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-face-smile text-[#fd1f4a]"></i>
+            <span>Face Painting</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-pencil text-[#fd1f4a]"></i>
+            <span>Caricature</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-stamp text-[#fd1f4a]"></i>
+            <span>Temporary Tattoos</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-gamepad text-[#fd1f4a]"></i>
+            <span>Games</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-palette text-[#fd1f4a]"></i>
+            <span>Art &amp; Craft</span>
+          </li>
+        </ul>
+      </article>
 
+      <!-- Decor & Add-ons -->
+      <article 
+        tabindex="0" 
+        class="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] hover-card"
+        data-aos="fade-up"
+        data-aos-delay="500"
+      >
+        <div class="flex items-center justify-center mb-6 text-[#fd1f4a]">
+          <i class="fas fa-music text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+        </div>
+        <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Decor & Add-ons</h3>
+        <ul class="text-gray-700 space-y-2 text-base list-none leading-relaxed">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-balloon text-[#fd1f4a]"></i>
+            <span>Balloon Arches</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-wand-magic-sparkles text-[#fd1f4a]"></i>
+            <span>Custom Themes</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-user-tie text-[#fd1f4a]"></i>
+            <span>Host</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-music text-[#fd1f4a]"></i>
+            <span>Music</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-camera text-[#fd1f4a]"></i>
+            <span>Photographer</span>
+          </li>
+        </ul>
+      </article>
+    </div>
   </div>
 </section>
 
 <!--Gallery -->
-<section id="gallery" class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-20" aria-labelledby="gallery-heading">
-  <h2 id="gallery-heading" class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight">Gallery</h2>
-  <p class="text-center text-gray-700 mb-8 max-w-xl mx-auto">
+<section id="gallery" class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-24" aria-labelledby="gallery-heading">
+  <h2 id="gallery-heading" class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text" data-aos="fade-up">Gallery</h2>
+  <p class="text-center text-gray-700 mb-8 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="200">
     Explore our vibrant moments captured from unforgettable celebrations and themed parties.
   </p>
 
   <!-- Filter Buttons -->
-  <div class="flex justify-center gap-4 mb-12">
-    <button data-filter="all" class="filter-btn bg-[#fd1f4a] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#e2173d] focus:outline-none focus:ring-2 focus:ring-[#fd1f4a]" aria-pressed="true">All</button>
-    <button data-filter="birthdays" class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a]">Birthdays</button>
-    <button data-filter="activities" class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a]">Activities</button>
-    <button data-filter="decor" class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a]">Decor</button>
+  <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="300">
+    <button data-filter="all" class="filter-btn bg-[#fd1f4a] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#e2173d] focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105" aria-pressed="true">All</button>
+    <button data-filter="birthdays" class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105">Birthdays</button>
+    <button data-filter="activities" class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105">Activities</button>
+    <button data-filter="decor" class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105">Decor</button>
   </div>
 
   <!-- Masonry Grid -->
-  <div id="gallery-grid" class="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
-    <!-- Birthday Images -->
-    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Birthday party setup" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Birthday cake and party" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    <img src="https://images.unsplash.com/photo-1601042879364-f3947af7d9d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kids birthday party" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    
-    <!-- Activities Images -->
-    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Face painting activity" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    <img src="https://images.unsplash.com/photo-1514525253161-7a3d1f68abf3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Temporary tattoo art" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Caricature artist at work" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    
-    <!-- Decor Images -->
-    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Balloon arch decor" loading="lazy" data-category="decor" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    <img src="https://images.unsplash.com/photo-151516906786-2a48f735ccb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Custom theme decor" loading="lazy" data-category="decor" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
-    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Party table setup" loading="lazy" data-category="decor" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition" />
+  <div id="gallery-grid" class="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4" data-aos="fade-up" data-aos-delay="400">
+    <!-- Initial Images -->
+    <div class="break-inside-avoid">
+      <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Birthday party setup" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    </div>
+    <div class="break-inside-avoid">
+      <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Birthday cake and party" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    </div>
+    <div class="break-inside-avoid">
+      <img src="https://images.unsplash.com/photo-1601042879364-f3947af7d9d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kids birthday party" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    </div>
+    <div class="break-inside-avoid">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Face painting activity" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    </div>
+    <div class="break-inside-avoid">
+      <img src="https://images.unsplash.com/photo-1514525253161-7a3d1f68abf3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Temporary tattoo art" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    </div>
+    <div class="break-inside-avoid">
+      <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Caricature artist at work" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    </div>
   </div>
 
-  <!-- See More Button -->
-  <div class="flex justify-center mt-12">
-    <button id="load-more-btn" class="bg-[#fd1f4a] text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-[#e2173d] focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] transition">
+  <!-- Load More Button / Completion Message -->
+  <div class="flex justify-center mt-12" data-aos="fade-up" data-aos-delay="500">
+    <button id="load-more-btn" class="bg-[#fd1f4a] text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-[#e2173d] focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105">
       See More
     </button>
+    <p id="completion-message" class="hidden text-gray-600 text-lg font-semibold">
+      You've reached the end of our gallery! 🎉
+    </p>
   </div>
 
   <!-- Modal Lightbox -->
   <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-50">
-    <button id="modal-close" class="absolute top-8 right-8 text-white text-4xl font-bold focus:outline-none">&times;</button>
+    <button id="modal-close" class="absolute top-8 right-8 text-white text-4xl font-bold focus:outline-none hover:text-pinkAccent transition-colors duration-300">&times;</button>
     <img id="modal-img" src="" alt="" class="max-w-full max-h-full rounded-lg shadow-lg" />
   </div>
 </section>
-<script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const galleryGrid = document.getElementById('gallery-grid');
-  const galleryImages = galleryGrid.querySelectorAll('img');
 
+<script>
+  // Gallery images data
+  const galleryImages = [
+    {
+      src: "https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Birthday party setup",
+      category: "birthdays"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Birthday cake and party",
+      category: "birthdays"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1601042879364-f3947af7d9d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kids birthday party" loading="lazy" data-category="birthdays" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    },
+    {
+      src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Face painting activity" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    },
+    {
+      src: "https://images.unsplash.com/photo-1514525253161-7a3d1f68abf3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Temporary tattoo art" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    },
+    {
+      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Caricature artist at work" loading="lazy" data-category="activities" class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105" />
+    },
+    {
+      src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Balloon arch decor",
+      category: "decor"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1515169067864-2a48f735ccb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Custom theme decor",
+      category: "decor"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      alt: "Party table setup",
+      category: "decor"
+    }
+  ];
+
+  let currentIndex = 6; // Start after initial 6 images (2 rows)
+  const imagesPerLoad = 3; // Load 3 images at a time
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  const completionMessage = document.getElementById('completion-message');
+  const galleryGrid = document.getElementById('gallery-grid');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  let currentFilter = 'all';
+
+  // Function to create image element
+  function createImageElement(image) {
+    const div = document.createElement('div');
+    div.className = 'break-inside-avoid';
+    div.style.animation = 'fadeIn 0.5s ease forwards';
+    
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.loading = 'lazy';
+    img.dataset.category = image.category;
+    img.className = 'w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105';
+    
+    img.addEventListener('click', () => {
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    div.appendChild(img);
+    return div;
+  }
+
+  // Function to load more images
+  function loadMoreImages() {
+    const endIndex = Math.min(currentIndex + imagesPerLoad, galleryImages.length);
+    const imagesToAdd = galleryImages.slice(currentIndex, endIndex);
+    
+    imagesToAdd.forEach(image => {
+      if (currentFilter === 'all' || image.category === currentFilter) {
+        galleryGrid.appendChild(createImageElement(image));
+      }
+    });
+    
+    currentIndex = endIndex;
+    
+    if (currentIndex >= galleryImages.length) {
+      loadMoreBtn.classList.add('hidden');
+      completionMessage.classList.remove('hidden');
+    }
+  }
+
+  // Load More button click handler
+  loadMoreBtn.addEventListener('click', loadMoreImages);
+
+  // Filter button click handler
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       filterButtons.forEach(b => {
@@ -349,30 +859,30 @@
       btn.classList.replace('text-black', 'text-white');
       btn.setAttribute('aria-pressed', 'true');
 
-      const filter = btn.getAttribute('data-filter');
-      galleryImages.forEach(img => {
-        if(filter === 'all' || img.dataset.category === filter) {
-          img.style.display = 'block';
-        } else {
-          img.style.display = 'none';
-        }
+      currentFilter = btn.getAttribute('data-filter');
+      galleryGrid.innerHTML = '';
+      currentIndex = 0;
+      
+      // Reset button state
+      loadMoreBtn.classList.remove('hidden');
+      completionMessage.classList.add('hidden');
+      
+      // Load initial 6 images for the selected filter
+      const initialImages = galleryImages.slice(0, 6).filter(image => 
+        currentFilter === 'all' || image.category === currentFilter
+      );
+      
+      initialImages.forEach(image => {
+        galleryGrid.appendChild(createImageElement(image));
       });
+      
+      currentIndex = 6;
     });
   });
 
+  // Modal close handler
   const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
   const modalClose = document.getElementById('modal-close');
-
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      modal.classList.add('opacity-100', 'pointer-events-auto');
-      document.body.style.overflow = 'hidden';
-    });
-  });
 
   modalClose.addEventListener('click', () => {
     modal.classList.remove('opacity-100', 'pointer-events-auto');
@@ -388,9 +898,9 @@
 </script>
 
 <!--Testimonial-->
-<section id="testimonials" class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-20" aria-labelledby="testimonials-heading">
-  <h2 id="testimonials-heading" class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight">What Our Clients Say</h2>
-  <p class="text-center text-gray-700 mb-10 max-w-xl mx-auto">
+<section id="testimonials" class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-24" aria-labelledby="testimonials-heading">
+  <h2 id="testimonials-heading" class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text" data-aos="fade-up">What Our Clients Say</h2>
+  <p class="text-center text-gray-700 mb-10 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="200">
     Hear directly from those who've experienced the magic of Born TO Banger celebrations.
   </p>
 
@@ -398,7 +908,7 @@
     <div class="flex space-x-6 sm:grid sm:grid-cols-3 sm:gap-8 sm:space-x-0">
 
       <!-- Testimonial Card -->
-      <article class="min-w-[280px] bg-white border border-gray-200 rounded-lg shadow p-6 relative flex flex-col justify-between">
+      <article class="min-w-[280px] bg-white border border-gray-200 rounded-lg shadow p-6 relative flex flex-col justify-between hover-card" data-aos="fade-up" data-aos-delay="300">
         <svg class="absolute top-4 left-4 w-8 h-8 text-[#fd1f4a] opacity-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.17 6a4 4 0 0 0-3.9 5.05l2.16 6.65a.75.75 0 0 0 1.43-.46l-.7-4.15a3 3 0 0 1 2.54-3.8v-3.29Zm9.66 0a4 4 0 0 0-3.9 5.05l2.16 6.65a.75.75 0 0 0 1.43-.46l-.7-4.15a3 3 0 0 1 2.54-3.8v-3.29Z"/></svg>
         <p class="text-gray-800 mb-4">"Born TO Banger made my daughter's birthday unforgettable! The decorations and activities were top-notch and the team was super professional."</p>
         <footer class="mt-auto flex items-center space-x-4">
@@ -411,7 +921,7 @@
       </article>
 
       <!-- Testimonial Card -->
-      <article class="min-w-[280px] bg-white border border-gray-200 rounded-lg shadow p-6 relative flex flex-col justify-between">
+      <article class="min-w-[280px] bg-white border border-gray-200 rounded-lg shadow p-6 relative flex flex-col justify-between hover-card" data-aos="fade-up" data-aos-delay="400">
         <svg class="absolute top-4 left-4 w-8 h-8 text-[#fd1f4a] opacity-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.17 6a4 4 0 0 0-3.9 5.05l2.16 6.65a.75.75 0 0 0 1.43-.46l-.7-4.15a3 3 0 0 1 2.54-3.8v-3.29Zm9.66 0a4 4 0 0 0-3.9 5.05l2.16 6.65a.75.75 0 0 0 1.43-.46l-.7-4.15a3 3 0 0 1 2.54-3.8v-3.29Z"/></svg>
         <p class="text-gray-800 mb-4">"The themed setups and games made our anniversary party extra special. Highly recommend Born TO Banger!"</p>
         <footer class="mt-auto flex items-center space-x-4">
@@ -424,7 +934,7 @@
       </article>
 
       <!-- Testimonial Card -->
-      <article class="min-w-[280px] bg-white border border-gray-200 rounded-lg shadow p-6 relative flex flex-col justify-between">
+      <article class="min-w-[280px] bg-white border border-gray-200 rounded-lg shadow p-6 relative flex flex-col justify-between hover-card" data-aos="fade-up" data-aos-delay="500">
         <svg class="absolute top-4 left-4 w-8 h-8 text-[#fd1f4a] opacity-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.17 6a4 4 0 0 0-3.9 5.05l2.16 6.65a.75.75 0 0 0 1.43-.46l-.7-4.15a3 3 0 0 1 2.54-3.8v-3.29Zm9.66 0a4 4 0 0 0-3.9 5.05l2.16 6.65a.75.75 0 0 0 1.43-.46l-.7-4.15a3 3 0 0 1 2.54-3.8v-3.29Z"/></svg>
         <p class="text-gray-800 mb-4">"Amazing service for baby showers and house parties. The team's creativity and professionalism stood out."</p>
         <footer class="mt-auto flex items-center space-x-4">
@@ -455,7 +965,7 @@
   }
 </style>
 
-<section id="instagram" class="bg-white py-12 px-4">
+<section id="instagram" class="bg-white py-16 px-4">
   <div class="max-w-xl mx-auto">
     <div class="animated-gradient rounded-2xl shadow-lg p-8 text-center text-white">
       
@@ -475,13 +985,13 @@
 
 <!--Contact-->
 <!-- Contact Section -->
-<section id="contact" class="py-16 bg-gray-50">
+<section id="contact" class="py-24 bg-gray-50 w-full">
   <style>
     .border-animated {
       position: relative;
       z-index: 0;
       overflow: hidden;
-      border-radius: 9999px; /* rounded-full */
+      border-radius: 9999px;
     }
     .border-animated::before {
       content: '';
@@ -504,38 +1014,30 @@
       border-radius: 9999px;
     }
     @keyframes pink-gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 
-  <div class="container mx-auto px-4">
+  <div class="w-full">
     <!-- Heading -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Let's Create Magic Together</h2>
+    <div class="text-center mb-12" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 gradient-text">Let's Create Magic Together</h2>
       <p class="text-xl text-gray-600 max-w-3xl mx-auto">
         Ready to plan your unforgettable celebration? Get in touch with us!
       </p>
       <div class="w-20 h-1 bg-gradient-to-r from-pink-500 to-red-500 mx-auto mt-4 rounded"></div>
     </div>
 
-    <!-- Cards -->
-    <div class="max-w-3xl mx-auto">
-      <div class="bg-white rounded-xl shadow-lg p-8">
+    <!-- Cards Container -->
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="200">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- WhatsApp Card -->
-          <div class="bg-green-50 rounded-lg p-6 text-center">
-            <div
-              class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"
-            >
-              <div class="text-green-600 text-2xl font-bold">WA</div>
+          <div class="bg-green-50 rounded-lg p-6 text-center hover-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <i class="fab fa-whatsapp text-2xl text-green-600"></i>
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">WhatsApp Us</h3>
             <p class="text-gray-600 mb-4">
@@ -544,17 +1046,14 @@
             <a
               href="https://wa.me/919999999999"
               target="_blank"
-              class="border-animated inline-block bg-green-500 text-white font-bold py-2 px-6 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105"
-              >Chat Now</a
-            >
+              class="border-animated inline-block bg-green-500 text-white font-bold py-2 px-6 rounded-full hover:bg-green-600 transition-all duration-300 transform hover:scale-105"
+            >Chat Now</a>
           </div>
 
           <!-- Email Card -->
-          <div class="bg-blue-50 rounded-lg p-6 text-center">
-            <div
-              class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"
-            >
-              <div class="text-blue-600 text-2xl font-bold">@</div>
+          <div class="bg-blue-50 rounded-lg p-6 text-center hover-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-envelope text-2xl text-blue-600"></i>
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
             <p class="text-gray-600 mb-4">
@@ -562,9 +1061,8 @@
             </p>
             <a
               href="mailto:hello@borntobanger.com"
-              class="border-animated inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition duration-300 transform hover:scale-105"
-              >Send Email</a
-            >
+              class="border-animated inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+            >Send Email</a>
           </div>
         </div>
       </div>
@@ -574,15 +1072,15 @@
 
 <!--FAQs-->
 <!-- FAQ Section -->
-<section id="faq" class="py-16 bg-white">
+<section id="faq" class="py-24 bg-white">
   <div class="container mx-auto px-4 max-w-4xl">
-    <h2 class="text-3xl md:text-4xl font-bold text-black text-center mb-4">Frequently Asked Questions</h2>
-    <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-black text-center mb-4 gradient-text" data-aos="fade-up">Frequently Asked Questions</h2>
+    <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
       Got questions? We've got answers. Explore our most common queries below.
     </p>
 
-    <div class="space-y-4">
-      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer" open>
+    <div class="space-y-4" data-aos="fade-up" data-aos-delay="300">
+      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer hover:shadow-md transition-all duration-300" open>
         <summary class="font-semibold text-lg text-black list-none flex justify-between items-center">
           What kind of parties do you specialize in?
           <svg
@@ -598,7 +1096,7 @@
         </p>
       </details>
 
-      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer">
+      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer hover:shadow-md transition-all duration-300">
         <summary class="font-semibold text-lg text-black list-none flex justify-between items-center">
           Can I book last-minute events?
           <svg
@@ -614,7 +1112,7 @@
         </p>
       </details>
 
-      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer">
+      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer hover:shadow-md transition-all duration-300">
         <summary class="font-semibold text-lg text-black list-none flex justify-between items-center">
           Do you customize themes?
           <svg
@@ -630,7 +1128,7 @@
         </p>
       </details>
 
-      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer">
+      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer hover:shadow-md transition-all duration-300">
         <summary class="font-semibold text-lg text-black list-none flex justify-between items-center">
           What areas do you serve?
           <svg
@@ -646,7 +1144,7 @@
         </p>
       </details>
 
-      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer">
+      <details class="group border border-gray-300 rounded-lg p-4 cursor-pointer hover:shadow-md transition-all duration-300">
         <summary class="font-semibold text-lg text-black list-none flex justify-between items-center">
           Do you offer combo packages?
           <svg
@@ -666,13 +1164,15 @@
 </section>
 
 <!-- Call-To-Action Section -->
-<section id="cta" class="w-full bg-[#fd1f4a] py-20 flex flex-col items-center justify-center text-center px-6">
-  <h2 class="text-white text-4xl md:text-5xl font-extrabold mb-6 max-w-3xl">
+<section id="cta" class="w-full bg-[#fd1f4a] py-24 flex flex-col items-center justify-center text-center px-6" data-aos="fade-up">
+  <h2 class="text-white text-4xl md:text-5xl font-extrabold mb-6 max-w-3xl" data-aos="fade-up" data-aos-delay="200">
     Let's Make Your Next Celebration Unforgettable
   </h2>
   <a
     href="#contact"
-    class="relative inline-block px-12 py-4 font-bold text-black rounded-full overflow-hidden focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] transition-transform transform hover:scale-105 glow-button"
+    class="relative inline-block px-12 py-4 font-bold text-black rounded-full overflow-hidden focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105 glow-button"
+    data-aos="fade-up"
+    data-aos-delay="400"
   >
     <span class="relative z-10">Get Started with Born TO Banger</span>
   </a>
@@ -699,61 +1199,59 @@
     }
   </style>
 </section>
+
 <!-- Top Footer Section -->
-<footer class="bg-gray-900 text-white py-12">
+<footer class="bg-gray-900 text-white py-16">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 gap-y-8"> <!-- Increased horizontal gap on desktop -->
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 gap-y-8 text-center" data-aos="fade-up">
       <!-- Logo, Description, Social Icons -->
-      <div>
+      <div class="flex flex-col items-center">
         <!-- Logo -->
-        <h3 class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-4">
-          Born TO Banger
-        </h3>
+        <img 
+          src="Born To Banger Logo.png" 
+          alt="Born TO Banger Logo" 
+          class="w-32 h-auto mb-4 hover:scale-110 transition-transform duration-300"
+          loading="lazy"
+          width="128"
+          height="auto"
+        />
         <!-- Short Description -->
-        <p class="text-gray-400 mb-6">
+        <p class="text-gray-400 mb-6 max-w-md">
           Transforming ordinary moments into extraordinary celebrations with creativity, passion, and attention to detail.
         </p>
         <!-- Social Icons -->
-        <div class="flex space-x-4">
+        <div class="flex space-x-4 justify-center">
           <!-- Instagram -->
-          <a href="https://instagram.com/borntobanger" target="_blank" class="text-gray-400 hover:text-pink-500 transition duration-300">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm8.1 2.4a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm-4.35 1.5a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5z"/>
-            </svg>
+          <a href="https://instagram.com/borntobanger" target="_blank" class="text-gray-400 hover:text-pink-500 transition duration-300 transform hover:scale-110">
+            <i class="fab fa-instagram text-2xl"></i>
           </a>
           <!-- Facebook -->
-          <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
-            </svg>
+          <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
+            <i class="fab fa-facebook text-2xl"></i>
           </a>
           <!-- Pinterest -->
-          <a href="#" class="text-gray-400 hover:text-red-500 transition duration-300">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.19 6.84 9.5-.09-.81-.17-2.05.04-2.93.19-.82 1.22-5.21 1.22-5.21s-.31-.63-.31-1.56c0-1.46.85-2.55 1.91-2.55.9 0 1.33.68 1.33 1.49 0 .91-.58 2.27-.88 3.53-.25 1.06.53 1.92 1.57 1.92 1.88 0 3.33-1.98 3.33-4.84 0-2.53-1.82-4.3-4.42-4.3-3.01 0-4.78 2.26-4.78 4.6 0 .91.35 1.9.79 2.44.09.11.1.21.08.32-.09.35-.29 1.12-.33 1.27-.05.21-.17.26-.4.16-1.49-.7-2.41-2.88-2.41-4.64 0-3.78 2.75-7.26 7.95-7.26 4.17 0 7.42 2.97 7.42 6.93 0 4.13-2.6 7.44-6.2 7.44-1.21 0-2.35-.63-2.74-1.38 0 0-.58 2.29-.72 2.78-.22.81-.67 1.62-1.07 2.26A9.98 9.98 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-            </svg>
+          <a href="#" class="text-gray-400 hover:text-red-500 transition duration-300 transform hover:scale-110">
+            <i class="fab fa-pinterest text-2xl"></i>
           </a>
           <!-- WhatsApp -->
-          <a href="https://wa.me/919999999999" target="_blank" class="text-gray-400 hover:text-green-500 transition duration-300">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.52 3.48A11.92 11.92 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.56 4.1 1.52 5.83L0 24l6.41-1.68A11.92 11.92 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.24-6.2-3.48-8.52zM12 22.08a10.07 10.07 0 0 1-5.2-1.44l-.37-.22-3.8 1 1-3.7-.23-.38A10.05 10.05 0 0 1 1.92 12 10.08 10.08 0 0 1 12 1.92 10.07 10.07 0 0 1 22.08 12 10.08 10.08 0 0 1 12 22.08zM17.28 15.73c-.29-.14-1.7-.83-1.96-.93-.26-.1-.45-.14-.64.14s-.73.93-.9 1.12c-.17.19-.34.21-.63.07-.29-.14-1.23-.45-2.34-1.44-.87-.78-1.45-1.73-1.62-2.02s-.02-.44.12-.58c.12-.12.29-.3.44-.45.15-.15.2-.26.3-.43.1-.17.05-.32-.02-.45-.07-.13-.64-1.53-.88-2.1-.23-.55-.46-.47-.64-.48l-.55-.01c-.19 0-.5.07-.76.36s-1 1-.99 2.44c.01 1.44 1.02 2.84 1.16 3.04.14.2 1.99 3.04 4.82 4.26  .67 .29 1.19 .46 1.6 .59 .67 .22 1.28 .19 1.76 .11 .54-.09 1.7-.69 1.94-1.36 .23-.67 .23-1.25 .16-1.37-.07-.12-.26-.2-.55-.35z"/>
-            </svg>
+          <a href="https://wa.me/919999999999" target="_blank" class="text-gray-400 hover:text-green-500 transition duration-300 transform hover:scale-110">
+            <i class="fab fa-whatsapp text-2xl"></i>
           </a>
         </div>
       </div>
 
       <!-- Quick Links and Artist Registration -->
-      <div>
+      <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
         <h4 class="text-lg font-semibold text-white mb-6">Quick Links</h4>
         <ul class="space-y-3">
-          <li><a href="/artist-registration" class="text-gray-400 hover:text-pink-500 transition duration-300">Artist Registration</a></li>
-          <li><a href="/privacy-policy" class="text-gray-400 hover:text-pink-500 transition duration-300">Privacy Policy</a></li>
+          <li><a href="/artist-registration" class="text-gray-400 hover:text-pink-500 transition duration-300 transform hover:translate-x-2 inline-block">Artist Registration</a></li>
+          <li><a href="/privacy-policy" class="text-gray-400 hover:text-pink-500 transition duration-300 transform hover:translate-x-2 inline-block">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
 
     <!-- Bottom Footer -->
-    <div class="border-t border-gray-800 mt-8 pt-8 text-center space-y-2">
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center space-y-2" data-aos="fade-up" data-aos-delay="300">
       <p class="text-gray-500 text-sm">&copy; 2025 Born TO Banger. All rights reserved.</p>
       <!-- Made with love line -->
       <p class="text-xs md:text-sm text-pink-500">Made with <span aria-label="love" role="img">❤️</span> in India</p>
@@ -761,17 +1259,105 @@
   </div>
 </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <a href="https://wa.me/15551234567" class="bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-110">
-            <i class="fab fa-whatsapp text-2xl"></i>
-        </a>
-    </div>
+<!-- Floating WhatsApp Button -->
+<div class="fixed bottom-6 right-6 z-50" data-aos="fade-up" data-aos-delay="400">
+  <a href="https://wa.me/15551234567" class="bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-110">
+    <i class="fab fa-whatsapp text-2xl"></i>
+  </a>
+</div>
 
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false
+  });
 
-  <script>
-    // Smooth scroll behavior for anchor links
-    document.documentElement.style.scrollBehavior = 'smooth';
-  </script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Loading animation
+  window.addEventListener('load', () => {
+    document.querySelector('.loading').style.display = 'none';
+  });
+
+  // Parallax effect for doodles
+  document.addEventListener('mousemove', (e) => {
+    const doodles = document.querySelectorAll('.doodle');
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+
+    doodles.forEach(doodle => {
+      const speed = doodle.getAttribute('data-speed') || 1;
+      const xOffset = (x - 0.5) * speed * 20;
+      const yOffset = (y - 0.5) * speed * 20;
+      doodle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+    });
+  });
+
+  // Add this to your existing script section
+  document.addEventListener('scroll', () => {
+    const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
+    
+    parallaxElements.forEach(element => {
+      const speed = parseFloat(element.getAttribute('data-parallax-speed'));
+      const yPos = -(window.pageYOffset * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+  });
+
+  // Initialize sliders with proper positioning
+  document.addEventListener('DOMContentLoaded', function() {
+    const leftSlider = document.querySelector('.animate-slide-left');
+    const rightSlider = document.querySelector('.animate-slide-right');
+    
+    // Set initial positions
+    leftSlider.style.transform = 'translateX(0)';
+    rightSlider.style.transform = 'translateX(-50%)';
+    
+    // Force a reflow to ensure smooth animation start
+    void leftSlider.offsetHeight;
+    void rightSlider.offsetHeight;
+
+    // Ensure continuous animation
+    function resetAnimation(element, animationName) {
+      element.style.animation = 'none';
+      void element.offsetHeight; // Force reflow
+      element.style.animation = `${animationName} 40s linear infinite`;
+    }
+
+    // Reset animations periodically to prevent any potential glitches
+    setInterval(() => {
+      resetAnimation(leftSlider, 'slideLeft');
+      resetAnimation(rightSlider, 'slideRight');
+    }, 38000); // Reset slightly before the animation completes
+
+    // Start animations immediately
+    requestAnimationFrame(() => {
+      leftSlider.style.animation = 'slideLeft 40s linear infinite';
+      rightSlider.style.animation = 'slideRight 40s linear infinite';
+    });
+  });
+</script>
+
+<!-- Loading Animation -->
+<div class="loading">
+  <div class="animate-pulse-slow">
+    <img 
+      src="https://via.placeholder.com/128x128?text=Born+TO+Banger" 
+      alt="Loading..." 
+      class="w-32 h-32 rounded-full"
+    />
+  </div>
+</div>
 </body>
 </html>

@@ -91,6 +91,21 @@
 
     @keyframes gradient {
       0% { background-position: 0% 50%; }
+      55% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Multi-color gradient animation for Banger */
+    .banger-gradient-text {
+      background: linear-gradient(90deg, #fd1f4a, #facc15, #3b82f6, #8b5cf6, #fd1f4a); /* Pink, Yellow, Blue, Purple, Pink */
+      background-size: 400% 100%; /* Make gradient wider than element */
+      -webkit-background-clip: text; /* Clip background to text shape */
+      -webkit-text-fill-color: transparent; /* Make text transparent */
+      animation: bangerGradient 5s linear infinite; /* Apply animation */
+    }
+
+    @keyframes bangerGradient {
+      0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
@@ -117,11 +132,12 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.5s ease-out;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
     .loading.fade-out {
       opacity: 0;
+      transform: scale(1.2);
       pointer-events: none;
     }
 
@@ -289,6 +305,413 @@
         animation: scroll-right 15s linear infinite;
       }
     }
+
+    /* Custom cursor effects */
+    .cursor-emoji {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.5rem;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      animation: emojiFloat 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes emojiFloat {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-30px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .hero-section {
+      cursor: none;
+    }
+
+    /* Enhanced loading animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .loading.fade-out {
+      opacity: 0;
+      transform: scale(1.2);
+      pointer-events: none;
+    }
+
+    /* Enhanced button animations */
+    .glow-button {
+      background-color: white;
+      animation: glow 3s ease-in-out infinite;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: scale(0);
+      animation: blast 2s ease-out infinite;
+    }
+
+    @keyframes blast {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px 4px rgba(253, 31, 74, 0.4),
+          0 0 40px 8px rgba(255, 182, 193, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 0 30px 6px rgba(253, 31, 74, 0.6),
+          0 0 60px 12px rgba(255, 182, 193, 0.7);
+      }
+    }
+
+    /* Enhanced loading animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .loading.fade-out {
+      opacity: 0;
+      transform: scale(1.2);
+      pointer-events: none;
+    }
+
+    /* Balloon Animation */
+    .balloon-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .balloon {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 3s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    .balloon-1 { animation-delay: 0s; }
+    .balloon-2 { animation-delay: 0.5s; }
+    .balloon-3 { animation-delay: 1s; }
+    .balloon-4 { animation-delay: 1.5s; }
+    .balloon-5 { animation-delay: 2s; }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), -100vh) rotate(var(--tr));
+        opacity: 0;
+      }
+    }
+
+    .balloon-1 { --tx: -100px; --tr: -20deg; }
+    .balloon-2 { --tx: -50px; --tr: -10deg; }
+    .balloon-3 { --tx: 0px; --tr: 0deg; }
+    .balloon-4 { --tx: 50px; --tr: 10deg; }
+    .balloon-5 { --tx: 100px; --tr: 20deg; }
+
+    /* Enhanced button animations */
+    .glow-button {
+      background-color: white;
+      animation: glow 3s ease-in-out infinite;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: scale(0);
+      animation: blast 2s ease-out infinite;
+    }
+
+    @keyframes blast {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px 4px rgba(253, 31, 74, 0.4),
+          0 0 40px 8px rgba(255, 182, 193, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 0 30px 6px rgba(253, 31, 74, 0.6),
+          0 0 60px 12px rgba(255, 182, 193, 0.7);
+      }
+    }
+
+    /* Enhanced loading animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .loading.fade-out {
+      opacity: 0;
+      transform: scale(1.2);
+      pointer-events: none;
+    }
+
+    /* Main Balloon Animation */
+    .main-balloon {
+      font-size: 5rem;
+      animation: balloon-pulse 2s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes balloon-pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Particles Container */
+    .particles-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      pointer-events: none;
+    }
+
+    /* Particle Animation */
+    .particle {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: explode 2s ease-out infinite;
+    }
+
+    .particle-1 { --angle: 0deg; animation-delay: 0s; }
+    .particle-2 { --angle: 45deg; animation-delay: 0.1s; }
+    .particle-3 { --angle: 90deg; animation-delay: 0.2s; }
+    .particle-4 { --angle: 135deg; animation-delay: 0.3s; }
+    .particle-5 { --angle: 180deg; animation-delay: 0.4s; }
+    .particle-6 { --angle: 225deg; animation-delay: 0.5s; }
+    .particle-7 { --angle: 270deg; animation-delay: 0.6s; }
+    .particle-8 { --angle: 315deg; animation-delay: 0.7s; }
+
+    @keyframes explode {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: 
+          translate(
+            calc(cos(var(--angle)) * 100px),
+            calc(sin(var(--angle)) * 100px)
+          )
+          rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Enhanced button animations */
+    .glow-button {
+      background-color: white;
+      animation: glow 3s ease-in-out infinite;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: scale(0);
+      animation: blast 2s ease-out infinite;
+    }
+
+    @keyframes blast {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px 4px rgba(253, 31, 74, 0.4),
+          0 0 40px 8px rgba(255, 182, 193, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 0 30px 6px rgba(253, 31, 74, 0.6),
+          0 0 60px 12px rgba(255, 182, 193, 0.7);
+      }
+    }
+
+    /* Enhanced loading animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .loading.fade-out {
+      opacity: 0;
+      transform: scale(1.2);
+      pointer-events: none;
+    }
+
+    .loading-video {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Enhanced button animations */
+    .glow-button {
+      background-color: white;
+      animation: glow 3s ease-in-out infinite;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: scale(0);
+      animation: blast 2s ease-out infinite;
+    }
+
+    @keyframes blast {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px 4px rgba(253, 31, 74, 0.4),
+          0 0 40px 8px rgba(255, 182, 193, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 0 30px 6px rgba(253, 31, 74, 0.6),
+          0 0 60px 12px rgba(255, 182, 193, 0.7);
+      }
+    }
   </style>
 
   <!-- SEO: canonical URL, Open Graph tags -->
@@ -309,101 +732,69 @@
   class="relative flex flex-col justify-center items-center min-h-[90vh] bg-white text-black overflow-hidden font-sans px-6 sm:px-12 lg:px-24"
   aria-label="Hero Section - Born TO Banger Event Company"
 >
-  <!-- Background subtle pink gradient overlay -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-pinkAccent/20 via-white/80 to-white/100 animate-fade-in"></div>
+  <!-- Animated background gradient -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-pinkAccent/20 via-white/80 to-white/100 animate-fade-in"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-pinkAccent/10 via-transparent to-transparent animate-pulse-slow"></div>
+  </div>
 
-  <!-- Celebration Doodles (parallax) -->
-  <img 
-    src="https://img.icons8.com/ios-filled/100/000000/confetti.png" 
-    alt="" 
-    aria-hidden="true"
-    class="absolute top-10 left-6 w-12 opacity-40 pointer-events-none animate-float"
-    data-parallax-speed="0.05"
-  />
-  <img 
-    src="https://img.icons8.com/ios-filled/100/000000/party-balloon.png" 
-    alt="" 
-    aria-hidden="true"
-    class="absolute bottom-20 right-10 w-14 opacity-30 pointer-events-none animate-float"
-    style="animation-delay: 0.5s;"
-    data-parallax-speed="0.08"
-  />
-  <img 
-    src="https://img.icons8.com/ios-filled/100/000000/party-hat.png" 
-    alt="" 
-    aria-hidden="true"
-    class="absolute top-1/2 right-1/4 w-10 opacity-35 pointer-events-none animate-float"
-    style="animation-delay: 1s;"
-    data-parallax-speed="0.03"
-  />
-
-  <!-- Logo -->
-  <div class="mb-6" data-aos="fade-down" data-aos-delay="200">
+  <!-- Logo with hover effect -->
+  <div class="mb-8 transform hover:scale-105 transition-all duration-300" data-aos="fade-down" data-aos-delay="200">
     <img 
       src="Born To Banger Logo.png" 
       alt="Born TO Banger Logo" 
-      class="w-40 sm:w-48 md:w-56 h-auto mx-auto hover:scale-110 transition-transform duration-300"
+      class="w-40 sm:w-48 md:w-56 h-auto mx-auto drop-shadow-lg"
       loading="lazy"
       width="224"
       height="auto"
     />
   </div>
 
-  <!-- Tagline -->
-  <h1 class="text-center text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight max-w-4xl mb-4 gradient-text" data-aos="fade-up" data-aos-delay="400">
-    Every Party Drops Like a <span class="text-pinkAccent">Banger</span>
+  <!-- Main heading with enhanced animation -->
+  <h1 class="text-center text-4xl font-extrabold max-w-4xl mb-8 gradient-text py-6" data-aos="fade-up" data-aos-delay="400">
+    Every Party Drops Like a 
+    <span class="relative inline-block banger-gradient-text">
+      Banger
+    </span>
   </h1>
 
-  <!-- Short description paragraph -->
-  <p class="text-center max-w-2xl text-lg text-gray-700 mb-8" data-aos="fade-up" data-aos-delay="600">
+  <!-- Enhanced description with better typography -->
+  <p class="text-center max-w-2xl text-lg sm:text-xl text-gray-700 mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="600">
     Creating unforgettable celebrations with premium decorations, fun activities, and vibrant themes.<br />
     Let Born TO Banger turn your special moments into lifelong memories.
   </p>
 
-  <!-- Call to Action Buttons in a nav for semantics -->
+  <!-- Enhanced CTA buttons with better hover effects -->
   <nav class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="800" aria-label="Primary call to action buttons">
     <a 
       href="#contact" 
-      class="bg-pinkAccent hover:bg-pinkAccent/90 text-white font-semibold rounded-lg px-8 py-3 shadow-lg transition-all duration-300 text-center hover:scale-105 transform"
+      class="group bg-pinkAccent hover:bg-pinkAccent/90 text-white font-semibold rounded-full px-8 py-3 shadow-lg transition-all duration-300 text-center transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
       role="button"
       tabindex="0"
     >
-      Plan a Party
+      <span class="relative z-10">Plan a Party</span>
+      <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
     </a>
     <a 
       href="#gallery" 
-      class="border-2 border-pinkAccent hover:bg-pinkAccent hover:text-white text-pinkAccent font-semibold rounded-lg px-8 py-3 shadow-lg transition-all duration-300 text-center hover:scale-105 transform"
+      class="group border-2 border-pinkAccent hover:bg-pinkAccent hover:text-white text-pinkAccent font-semibold rounded-full px-8 py-3 shadow-lg transition-all duration-300 text-center transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
       role="button"
       tabindex="0"
     >
-      See Our Work
+      <span class="relative z-10">See Our Work</span>
+      <div class="absolute inset-0 bg-pinkAccent/10 transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
     </a>
   </nav>
 
-  <!-- Down arrow scroll indicator -->
-  <div class="absolute bottom-8 animate-bounce-slow" aria-hidden="true" data-aos="fade-up" data-aos-delay="1000">
-    <svg class="w-6 h-6 text-pinkAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-    </svg>
+  <!-- Enhanced scroll indicator -->
+  <div class="absolute inset-x-0 bottom-0 flex justify-center animate-bounce-slow" aria-hidden="true" data-aos="fade-up" data-aos-delay="1000">
+    <div class="flex flex-col items-center bg-white/50 backdrop-blur-sm px-4 py-2 rounded-t-full">
+      <span class="text-sm text-pinkAccent mb-1">Scroll to Explore</span>
+      <svg class="w-5 h-5 text-pinkAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </div>
   </div>
-
-  <script>
-    // Parallax doodles effect on mouse move
-    const doodles = document.querySelectorAll('[data-parallax-speed]');
-
-    window.addEventListener('mousemove', (e) => {
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-
-      doodles.forEach((doodle) => {
-        const speed = parseFloat(doodle.getAttribute('data-parallax-speed'));
-        const x = (e.clientX - centerX) * speed;
-        const y = (e.clientY - centerY) * speed;
-
-        doodle.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      });
-    });
-  </script>
 </header>
 
 <section 
@@ -1091,7 +1482,7 @@
             <a
               href="https://wa.me/919999999999"
               target="_blank"
-              class="border-animated inline-block bg-green-500 text-white font-bold py-2 px-6 rounded-full hover:bg-green-600 transition-all duration-300 transform hover:scale-105"
+              class="border-animated inline-block bg-green-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105"
             >Chat Now</a>
           </div>
 
@@ -1106,7 +1497,7 @@
             </p>
             <a
               href="mailto:hello@borntobanger.com"
-              class="border-animated inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+              class="border-animated inline-block bg-blue-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
             >Send Email</a>
           </div>
         </div>
@@ -1209,15 +1600,13 @@
 </section>
 
 <!-- Call-To-Action Section -->
-<section id="cta" class="w-full bg-[#fd1f4a] py-24 flex flex-col items-center justify-center text-center px-6" data-aos="fade-up">
-  <h2 class="text-white text-4xl md:text-5xl font-extrabold mb-6 max-w-3xl" data-aos="fade-up" data-aos-delay="200">
+<section id="cta" class="w-full bg-[#fd1f4a] py-24 flex flex-col items-center justify-center text-center px-6">
+  <h2 class="text-white text-4xl md:text-5xl font-extrabold mb-6 max-w-3xl">
     Let's Make Your Next Celebration Unforgettable
   </h2>
   <a
     href="#contact"
     class="relative inline-block px-12 py-4 font-bold text-black rounded-full overflow-hidden focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105 glow-button"
-    data-aos="fade-up"
-    data-aos-delay="400"
   >
     <span class="relative z-10">Get Started with Born TO Banger</span>
   </a>
@@ -1392,17 +1781,106 @@
       rightSlider.style.animation = 'slideRight 40s linear infinite';
     });
   });
+
+  // Custom cursor emoji effect
+  const emojis = ['🎉', '🎈', '🎁', '🎊', '🎂', '🎨', '🎭', '🎪', '🎯', '🎲'];
+  let lastEmojiTime = 0;
+  const emojiInterval = 50; // Reduced interval for more frequent emojis
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const heroSection = document.getElementById('hero');
+    
+    heroSection.addEventListener('mousemove', function(e) {
+      const currentTime = Date.now();
+      
+      // Only create new emoji if enough time has passed
+      if (currentTime - lastEmojiTime >= emojiInterval) {
+        lastEmojiTime = currentTime;
+        
+        // Create emoji element
+        const emoji = document.createElement('div');
+        emoji.className = 'cursor-emoji';
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Position emoji at cursor
+        emoji.style.left = e.clientX + 'px';
+        emoji.style.top = e.clientY + 'px';
+        
+        // Add random rotation
+        emoji.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        // Add to document
+        document.body.appendChild(emoji);
+        
+        // Remove emoji after animation
+        setTimeout(() => {
+          emoji.remove();
+        }, 800);
+      }
+    });
+
+    // Remove cursor hiding events
+  });
 </script>
 
 <!-- Loading Animation -->
 <div class="loading">
-  <div class="animate-pulse-slow">
-    <img 
-      src="https://via.placeholder.com/128x128?text=Born+TO+Banger" 
-      alt="Loading..." 
-      class="w-32 h-32 rounded-full"
-    />
-  </div>
+  <div class="loading-spinner"></div>
 </div>
+
+<script>
+  // Wait for 2.8 seconds before hiding the preloader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelector('.loading').classList.add('fade-out');
+    }, 2800); // 2.8 seconds
+  });
+</script>
+
+<style>
+  /* Enhanced loading animation */
+  .loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .loading.fade-out {
+    opacity: 0;
+    transform: scale(1.2);
+    pointer-events: none;
+  }
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #fd1f4a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Enhanced button animations */
+  .glow-button {
+    background-color: white;
+    animation: glow 3s ease-in-out infinite;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+</style>
 </body>
 </html>

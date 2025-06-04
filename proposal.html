@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Born to Banger – Parallax Slider</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind config to use Montserrat -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mont: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .slide {
+      flex: none;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    #slides-wrapper {
+      display: flex;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .bg-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      transition: transform 0.8s ease-in-out;
+      z-index: 0;
+    }
+
+    .content-layer {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    #progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #e5e7eb;
+      z-index: 30;
+    }
+
+    #progress-fill {
+      width: 0%;
+      height: 100%;
+      background-color: #fd1f4a;
+      transition: width 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body class="font-mont">
+
+  <!-- Progress Bar -->
+  <div id="progress-bar">
+    <div id="progress-fill"></div>
+  </div>
+
+  <!-- Slider Container -->
+  <div class="relative w-screen h-screen overflow-hidden">
+    <div id="slides-wrapper">
+      <!-- Slide 1: Cover -->
+      <section class="slide">
+        <div class="bg-layer bg-[#fd1f4a]"></div>
+        <div class="content-layer">
+          <h1 class="text-white text-6xl sm:text-7xl md:text-8xl font-extrabold drop-shadow-lg">
+            Born to Banger
+          </h1>
+          <p class="mt-4 text-white text-xl sm:text-2xl md:text-3xl italic tracking-wide drop-shadow-md">
+            Where Ordinary Ends and Epic Begins
+          </p>
+          <div class="mt-8 space-y-2 text-white text-base sm:text-lg md:text-xl">
+            <p><strong>Website:</strong> <a href="#" class="underline">borntobanger.surajdev.com</a></p>
+            <p><strong>Instagram:</strong> <a href="#" class="underline">@borntobanger</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Who We Are -->
+      <section class="slide bg-white">
+        <div class="bg-layer bg-white opacity-10"></div>
+        <div class="content-layer">
+          <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-4">Who We Are</h2>
+          <p class="text-gray-700 text-lg sm:text-xl italic mb-8 max-w-2xl">
+            “At Born to Banger, we believe events shouldn’t just be attended—they should be experienced.”
+          </p>
+          <ul class="space-y-4 text-left max-w-xl text-gray-800 text-base sm:text-lg">
+            <li><span class="text-[#fd1f4a]">●</span> <strong>We Create Vibes:</strong> Unique energy we design and amplify.</li>
+            <li><span class="text-[#fd1f4a]">●</span> <strong>We Build Memories:</strong> Moments that last beyond the event.</li>
+            <li><span class="text-[#fd1f4a]">●</span> <strong>We Go Beyond Ordinary:</strong> No templates, just creativity.</li>
+            <li><span class="text-[#fd1f4a]">●</span> <strong>Our Mission:</strong> Make your event unforgettable.</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Slide 3: Our Services -->
+<section class="slide bg-white">
+  <!-- Optional Parallax Background -->
+  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
+
+  <div class="content-layer px-4">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-4">Our Services</h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
+      We specialize in creating unforgettable experiences across all types of events. Here’s what we do best:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800 text-base sm:text-lg">
+      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
+        <h3 class="font-bold text-[#fd1f4a] mb-2">Corporate Events & Brand Experiences</h3>
+        <p>Product launches, brand activations, and executive retreats designed to impress.</p>
+      </div>
+      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
+        <h3 class="font-bold text-[#fd1f4a] mb-2">Youth & College Festival Curation</h3>
+        <p>High-energy fests, campus takeovers, and youth-targeted programming that clicks.</p>
+      </div>
+      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
+        <h3 class="font-bold text-[#fd1f4a] mb-2">Team-Building Retreats & Activities</h3>
+        <p>Unique activities to energize, unite, and empower your team in unforgettable ways.</p>
+      </div>
+      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
+        <h3 class="font-bold text-[#fd1f4a] mb-2">Theme Party Design & Decor</h3>
+        <p>From visual storytelling to immersive theming, we transform any space into a vibe.</p>
+      </div>
+      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
+        <h3 class="font-bold text-[#fd1f4a] mb-2">Artist Management & Booking</h3>
+        <p>We connect you with top-tier performers, DJs, and hosts that bring your event to life.</p>
+      </div>
+      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
+        <h3 class="font-bold text-[#fd1f4a] mb-2">Games, Activities & Interactive Zones</h3>
+        <p>Custom-curated zones that spark fun, engagement, and memories for every guest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 4: Why Choose Us -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-r from-white via-[#fd1f4a]/5 to-white"></div>
+
+  <div class="content-layer px-4">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">Why Choose Us</h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
+      We’re not just another event agency — here’s what sets us apart and why clients love working with us:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800 text-base sm:text-lg">
+      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
+        <h3 class="font-bold mb-1">Fresh Perspective</h3>
+        <p>We’re new, bold, and driven by creativity — no recycled concepts here.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
+        <h3 class="font-bold mb-1">Client-Centric Approach</h3>
+        <p>We deeply personalize every event, aligning every detail with your goals.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
+        <h3 class="font-bold mb-1">Reliable Talent Network</h3>
+        <p>From DJs to decor artists, we collaborate with trusted professionals.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
+        <h3 class="font-bold mb-1">On-Time, On-Budget Delivery</h3>
+        <p>Efficient project management means no surprises and no delays.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
+        <h3 class="font-bold mb-1">Tech-Enhanced Events</h3>
+        <p>We integrate lighting, interactive zones, and media tech to elevate the experience.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
+        <h3 class="font-bold mb-1">Scalable & Versatile</h3>
+        <p>From intimate private parties to full-scale college fests, we adapt to your scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: Our Process -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
+
+  <div class="content-layer px-4">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">Our Process</h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
+      We follow a streamlined process to bring your vision to life with clarity, creativity, and confidence:
+    </p>
+
+    <div class="max-w-3xl mx-auto space-y-6 text-left text-gray-800 text-base sm:text-lg">
+      <!-- Step 1 -->
+      <div class="flex items-start gap-4">
+        <div class="text-3xl text-[#fd1f4a] font-bold">1</div>
+        <div>
+          <h3 class="font-semibold text-[#fd1f4a] mb-1">Discovery Session</h3>
+          <p>We dive deep into your goals, audience, and event expectations in a collaborative kickoff meeting.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex items-start gap-4">
+        <div class="text-3xl text-[#fd1f4a] font-bold">2</div>
+        <div>
+          <h3 class="font-semibold text-[#fd1f4a] mb-1">Custom Proposal</h3>
+          <p>We present creative ideas, moodboards, timelines, and transparent pricing tailored to your needs.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex items-start gap-4">
+        <div class="text-3xl text-[#fd1f4a] font-bold">3</div>
+        <div>
+          <h3 class="font-semibold text-[#fd1f4a] mb-1">Event Execution</h3>
+          <p>From vendor coordination to guest flow to real-time issue resolution — we make it all seamless.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flex items-start gap-4">
+        <div class="text-3xl text-[#fd1f4a] font-bold">4</div>
+        <div>
+          <h3 class="font-semibold text-[#fd1f4a] mb-1">Post-Event Wrap-Up</h3>
+          <p>We follow up with you for feedback, media handover, and next steps to strengthen future events.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: Sample Event Concepts -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-tr from-white via-[#fd1f4a]/5 to-white"></div>
+
+  <div class="content-layer px-4">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">Sample Event Concepts</h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
+      Here are just a few of the unforgettable concepts we can bring to life for your next event:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-gray-800 text-base sm:text-lg">
+      <!-- Concept 1 -->
+      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
+        <div class="text-4xl mb-3 text-[#fd1f4a]">🎧</div>
+        <h3 class="font-bold text-lg mb-1">Neon College Parties</h3>
+        <p>UV glow, DJs, and immersive lighting to fuel high-energy college nights.</p>
+      </div>
+
+      <!-- Concept 2 -->
+      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
+        <div class="text-4xl mb-3 text-[#fd1f4a]">🎤</div>
+        <h3 class="font-bold text-lg mb-1">Brand Launch Raves</h3>
+        <p>Turn product launches into nightlife experiences guests won’t forget.</p>
+      </div>
+
+      <!-- Concept 3 -->
+      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
+        <div class="text-4xl mb-3 text-[#fd1f4a]">🏖️</div>
+        <h3 class="font-bold text-lg mb-1">Beach Vibe Events</h3>
+        <p>Tropical theming, barefoot dancefloors, and sunset backdrops.</p>
+      </div>
+
+      <!-- Concept 4 -->
+      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
+        <div class="text-4xl mb-3 text-[#fd1f4a]">🕹️</div>
+        <h3 class="font-bold text-lg mb-1">Retro Game Zones</h3>
+        <p>Arcade meets nostalgia — ideal for corporate and college audiences alike.</p>
+      </div>
+
+      <!-- Concept 5 -->
+      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
+        <div class="text-4xl mb-3 text-[#fd1f4a]">🎪</div>
+        <h3 class="font-bold text-lg mb-1">Carnival Themes</h3>
+        <p>Whimsical setups with mini-games, candy carts, and live performers.</p>
+      </div>
+
+      <!-- Concept 6 -->
+      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
+        <div class="text-4xl mb-3 text-[#fd1f4a]">🧠</div>
+        <h3 class="font-bold text-lg mb-1">Interactive Workshops</h3>
+        <p>For teams or youth — creative, skill-based, and completely engaging.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 10: Event Highlights -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-t from-white via-[#fd1f4a]/5 to-white"></div>
+
+  <div class="content-layer px-4">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">
+      Event Highlights
+    </h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-10 max-w-2xl mx-auto">
+      A glimpse into the unforgettable moments we've created.
+    </p>
+
+    <!-- Image Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- Replace with real images -->
+      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
+        <img src="https://via.placeholder.com/500x300?text=Youth+Fest" alt="Youth Fest" class="w-full h-full object-cover" />
+      </div>
+      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
+        <img src="https://via.placeholder.com/500x300?text=Corporate+Launch" alt="Corporate Launch" class="w-full h-full object-cover" />
+      </div>
+      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
+        <img src="https://via.placeholder.com/500x300?text=Team+Retreat" alt="Team Retreat" class="w-full h-full object-cover" />
+      </div>
+      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
+        <img src="https://via.placeholder.com/500x300?text=Theme+Party" alt="Theme Party" class="w-full h-full object-cover" />
+      </div>
+      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
+        <img src="https://via.placeholder.com/500x300?text=Live+DJ+Set" alt="Live DJ" class="w-full h-full object-cover" />
+      </div>
+      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
+        <img src="https://via.placeholder.com/500x300?text=Artist+Showcase" alt="Artist Showcase" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Slide 7: Testimonials -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-tl from-white via-[#fd1f4a]/10 to-white"></div>
+
+  <div class="content-layer px-4">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">What Clients Say</h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
+      Don’t just take our word for it. Here’s what our early clients have to say about working with Born to Banger:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- Testimonial 1 -->
+      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
+        <p class="text-gray-700 italic mb-3">
+          “Even as a new brand, Born to Banger impressed us with creativity and dedication. Our product launch felt world-class.”
+        </p>
+        <div class="text-sm font-semibold text-[#fd1f4a]">Sneha R., Startup Founder</div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
+        <p class="text-gray-700 italic mb-3">
+          “They brought a fresh, exciting vibe to our college fest — students are still talking about it!”
+        </p>
+        <div class="text-sm font-semibold text-[#fd1f4a]">Rohan M., YouthX Festival Organizer</div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
+        <p class="text-gray-700 italic mb-3">
+          “The planning was flawless, the vibe was unreal — exactly what we needed for our retreat.”
+        </p>
+        <div class="text-sm font-semibold text-[#fd1f4a]">Kavita T., Team Manager</div>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
+        <p class="text-gray-700 italic mb-3">
+          “Their decor, music coordination, and activities completely transformed the event. 10/10!”
+        </p>
+        <div class="text-sm font-semibold text-[#fd1f4a]">Aarav S., Private Client</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 8: Let’s Create Something Epic -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
+
+  <div class="content-layer px-4 text-center">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">
+      Let’s Create Something Epic
+    </h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
+      Ready to make your event unforgettable? Contact us today and let’s start building magic together.
+    </p>
+
+    <!-- Contact Info -->
+    <div class="space-y-4 text-gray-800 text-base sm:text-lg max-w-md mx-auto">
+      <p>
+        📞 <strong>Phone:</strong>
+        <a href="tel:+919310759660" class="text-[#fd1f4a] underline hover:text-black transition">+91 9310759660</a>
+      </p>
+      <p>
+        ✉️ <strong>Email:</strong>
+        <a href="mailto:hello@borntobanger.com" class="text-[#fd1f4a] underline hover:text-black transition">hello@borntobanger.com</a>
+      </p>
+      <p>
+        📸 <strong>Instagram:</strong>
+        <a href="https://instagram.com/borntobanger" class="text-[#fd1f4a] underline hover:text-black transition">@borntobanger</a>
+      </p>
+      <p>
+        🌐 <strong>Website:</strong>
+        <a href="https://borntobanger.surajdev.com" class="text-[#fd1f4a] underline hover:text-black transition">borntobanger.surajdev.com</a>
+      </p>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="mt-10">
+      <a
+        href="https://wa.me/919310759660"
+        target="_blank"
+        class="inline-block bg-[#fd1f4a] text-white text-lg font-semibold px-6 py-3 rounded-full shadow-md hover:bg-[#e01b42] transition"
+      >
+        📲 Book Your Free Consultation
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 9: Our Other Ventures -->
+<section class="slide bg-white">
+  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
+
+  <div class="content-layer px-4 text-center">
+    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">
+      More Than Just Events
+    </h2>
+    <p class="text-gray-700 text-lg sm:text-xl mb-10 max-w-2xl mx-auto">
+      We're a growing creative ecosystem. Check out our other ventures that complement and extend the Born to Banger experience.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800 text-base sm:text-lg">
+      <!-- Venture 1: AdZola -->
+      <div class="p-6 bg-white border shadow-md rounded-xl hover:shadow-xl transition">
+        <h3 class="text-[#fd1f4a] font-bold text-xl mb-2">AdZola</h3>
+        <p class="mb-2">Your partner for performance-driven digital marketing, ad strategy, and online brand visibility.</p>
+        <p>
+          🌐 <a href="https://www.adzola.com" class="underline text-[#fd1f4a] hover:text-black transition">www.adzola.com</a><br />
+          📸 <a href="https://instagram.com/adzola.in" class="underline text-[#fd1f4a] hover:text-black transition">@adzola.in</a>
+        </p>
+      </div>
+
+      <!-- Venture 2: Add more if needed -->
+      <div class="p-6 bg-white border shadow-md rounded-xl hover:shadow-xl transition">
+        <h3 class="text-[#fd1f4a] font-bold text-xl mb-2">Coming Soon</h3>
+        <p class="mb-2">We're constantly building. Stay tuned for more projects focused on creativity, tech, and youth culture.</p>
+        <p>💡 New ideas in the works... 👀</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-4">
+      <button
+        id="prevBtn"
+        class="bg-white text-[#fd1f4a] shadow-xl hover:scale-110 transition-all p-4 rounded-full focus:outline-none"
+        title="Previous"
+      >
+        &#8592;
+      </button>
+      <button
+        id="nextBtn"
+        class="bg-white text-[#fd1f4a] shadow-xl hover:scale-110 transition-all p-4 rounded-full focus:outline-none"
+        title="Next"
+      >
+        &#8594;
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript: Scroll + Navigation + Parallax -->
+  <script>
+    const wrapper = document.getElementById("slides-wrapper");
+    const slides = document.querySelectorAll(".slide");
+    const bgLayers = document.querySelectorAll(".bg-layer");
+    const progressFill = document.getElementById("progress-fill");
+
+    let currentIndex = 0;
+    const total = slides.length;
+
+    function updateSlide() {
+      wrapper.style.transform = `translateX(-${currentIndex * 100}vw)`;
+      bgLayers.forEach(bg => {
+        bg.style.transform = `translateX(-${currentIndex * 50}vw)`;
+      });
+      progressFill.style.width = `${((currentIndex + 1) / total) * 100}%`;
+    }
+
+    document.getElementById("nextBtn").onclick = () => {
+      currentIndex = (currentIndex + 1) % total;
+      updateSlide();
+    };
+
+    document.getElementById("prevBtn").onclick = () => {
+      currentIndex = (currentIndex - 1 + total) % total;
+      updateSlide();
+    };
+
+    // Scroll wheel navigation
+    let scrollCooldown = false;
+    window.addEventListener("wheel", (e) => {
+      if (scrollCooldown) return;
+      scrollCooldown = true;
+      currentIndex = e.deltaY > 0
+        ? (currentIndex + 1) % total
+        : (currentIndex - 1 + total) % total;
+      updateSlide();
+      setTimeout(() => scrollCooldown = false, 1000);
+    });
+
+    // Touch swipe navigation
+    let startX = 0;
+    window.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
+    });
+
+    window.addEventListener("touchend", e => {
+      const deltaX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(deltaX) > 50) {
+        currentIndex = deltaX < 0
+          ? (currentIndex + 1) % total
+          : (currentIndex - 1 + total) % total;
+        updateSlide();
+      }
+    });
+
+    // Initialize
+    updateSlide();
+  </script>
+</body>
+</html>

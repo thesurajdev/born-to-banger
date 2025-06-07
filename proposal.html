@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Born to Banger – Parallax Slider</title>
+  <title>Born to Banger – Snap-Scroll Slider</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Montserrat -->
+  <!-- Google Font: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
   <!-- Tailwind config to use Montserrat -->
@@ -16,9 +16,7 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            mont: ['Montserrat', 'sans-serif']
-          }
+          fontFamily: { mont: ['Montserrat','sans-serif'] }
         }
       }
     };
@@ -28,533 +26,877 @@
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-    }
-
-    .slide {
-      flex: none;
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-    }
-
-    #slides-wrapper {
-      display: flex;
-      transition: transform 0.8s ease-in-out;
-    }
-
-    .bg-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
       height: 100%;
-      transition: transform 0.8s ease-in-out;
-      z-index: 0;
+      overflow-x: hidden;                /* hide horizontal scrollbar */
     }
-
+    /* Scroll-snap container */
+    #slides-wrapper {
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      
+      /* Custom scrollbar */
+      scrollbar-width: thin;             /* Firefox */
+      scrollbar-color: #fd1f4a transparent;
+    }
+    #slides-wrapper::-webkit-scrollbar {
+      width: 10px;
+    }
+    #slides-wrapper::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #slides-wrapper::-webkit-scrollbar-thumb {
+      background-color: #fd1f4a;
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+    #slides-wrapper::-webkit-scrollbar-thumb:hover {
+      background-color: #d40032;
+    }
+    /* Each slide */
+    .slide {
+      scroll-snap-align: start;
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .bg-layer {
+      position: absolute; top: 0; left: 0;
+      width: 200%; height: 100%;
+      z-index: 0;
+      transition: transform 0.8s ease-in-out;
+    }
     .content-layer {
       position: relative;
       z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      padding: 1.5rem;
-      text-align: center;
     }
-
+    /* Progress bar (optional) */
     #progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background-color: #e5e7eb;
-      z-index: 30;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 5px;
+      background-color: #e5e7eb; z-index: 30;
     }
-
     #progress-fill {
-      width: 0%;
-      height: 100%;
+      width: 0; height: 100%;
       background-color: #fd1f4a;
-      transition: width 0.5s ease-in-out;
+      transition: width 0.2s ease-out;
     }
   </style>
 </head>
 <body class="font-mont">
 
-  <!-- Progress Bar -->
-  <div id="progress-bar">
-    <div id="progress-fill"></div>
-  </div>
+  <!-- Progress Bar (optional) -->
+  <div id="progress-bar"><div id="progress-fill"></div></div>
 
-  <!-- Slider Container -->
-  <div class="relative w-screen h-screen overflow-hidden">
-    <div id="slides-wrapper">
-      <!-- Slide 1: Cover -->
-      <section class="slide">
-        <div class="bg-layer bg-[#fd1f4a]"></div>
-        <div class="content-layer">
-          <h1 class="text-white text-6xl sm:text-7xl md:text-8xl font-extrabold drop-shadow-lg">
-            Born to Banger
-          </h1>
-          <p class="mt-4 text-white text-xl sm:text-2xl md:text-3xl italic tracking-wide drop-shadow-md">
-            Where Ordinary Ends and Epic Begins
-          </p>
-          <div class="mt-8 space-y-2 text-white text-base sm:text-lg md:text-xl">
-            <p><strong>Website:</strong> <a href="#" class="underline">borntobanger.surajdev.com</a></p>
-            <p><strong>Instagram:</strong> <a href="#" class="underline">@borntobanger</a></p>
-          </div>
-        </div>
-      </section>
+  <!-- Snap-scroll wrapper -->
+  <div id="slides-wrapper">
 
-      <!-- Slide 2: Who We Are -->
-      <section class="slide bg-white">
-        <div class="bg-layer bg-white opacity-10"></div>
-        <div class="content-layer">
-          <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-4">Who We Are</h2>
-          <p class="text-gray-700 text-lg sm:text-xl italic mb-8 max-w-2xl">
-            “At Born to Banger, we believe events shouldn’t just be attended—they should be experienced.”
-          </p>
-          <ul class="space-y-4 text-left max-w-xl text-gray-800 text-base sm:text-lg">
-            <li><span class="text-[#fd1f4a]">●</span> <strong>We Create Vibes:</strong> Unique energy we design and amplify.</li>
-            <li><span class="text-[#fd1f4a]">●</span> <strong>We Build Memories:</strong> Moments that last beyond the event.</li>
-            <li><span class="text-[#fd1f4a]">●</span> <strong>We Go Beyond Ordinary:</strong> No templates, just creativity.</li>
-            <li><span class="text-[#fd1f4a]">●</span> <strong>Our Mission:</strong> Make your event unforgettable.</li>
-          </ul>
-        </div>
-      </section>
-      
-      <!-- Slide 3: Our Services -->
-<section class="slide bg-white">
-  <!-- Optional Parallax Background -->
-  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
+<!-- Slide 1: Cover (Improved UI/UX, Mobile-First) -->
+<section class="slide relative bg-[#fd1f4a] flex items-center justify-center">
+  <!-- Background gradient overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#fd1f4a] to-[#a11c37] opacity-80"></div>
 
-  <div class="content-layer px-4">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-4">Our Services</h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
-      We specialize in creating unforgettable experiences across all types of events. Here’s what we do best:
+  <!-- Content -->
+  <div class="content-layer relative flex flex-col items-center justify-center text-center px-6 sm:px-10 lg:px-20 py-12 sm:py-16 lg:py-24 space-y-6">
+    <!-- Tagline Badge -->
+    <span class="inline-block bg-white bg-opacity-20 text-white text-xs uppercase tracking-wider rounded-full px-3 py-1">
+      Born to Banger
+    </span>
+
+    <!-- Main Heading -->
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-lg">
+      Where Ordinary <br class="sm:hidden" /> Ends and Epic Begins
+    </h1>
+
+    <!-- Subheading -->
+    <p class="max-w-xl text-sm sm:text-base md:text-lg text-white opacity-90 italic">
+      Experience events reimagined. From concept to crescendo, we deliver memories that last.
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800 text-base sm:text-lg">
-      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
-        <h3 class="font-bold text-[#fd1f4a] mb-2">Corporate Events & Brand Experiences</h3>
-        <p>Product launches, brand activations, and executive retreats designed to impress.</p>
-      </div>
-      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
-        <h3 class="font-bold text-[#fd1f4a] mb-2">Youth & College Festival Curation</h3>
-        <p>High-energy fests, campus takeovers, and youth-targeted programming that clicks.</p>
-      </div>
-      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
-        <h3 class="font-bold text-[#fd1f4a] mb-2">Team-Building Retreats & Activities</h3>
-        <p>Unique activities to energize, unite, and empower your team in unforgettable ways.</p>
-      </div>
-      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
-        <h3 class="font-bold text-[#fd1f4a] mb-2">Theme Party Design & Decor</h3>
-        <p>From visual storytelling to immersive theming, we transform any space into a vibe.</p>
-      </div>
-      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
-        <h3 class="font-bold text-[#fd1f4a] mb-2">Artist Management & Booking</h3>
-        <p>We connect you with top-tier performers, DJs, and hosts that bring your event to life.</p>
-      </div>
-      <div class="p-6 bg-white shadow-lg border rounded-xl hover:shadow-xl transition">
-        <h3 class="font-bold text-[#fd1f4a] mb-2">Games, Activities & Interactive Zones</h3>
-        <p>Custom-curated zones that spark fun, engagement, and memories for every guest.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Slide 4: Why Choose Us -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-r from-white via-[#fd1f4a]/5 to-white"></div>
-
-  <div class="content-layer px-4">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">Why Choose Us</h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
-      We’re not just another event agency — here’s what sets us apart and why clients love working with us:
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800 text-base sm:text-lg">
-      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
-        <h3 class="font-bold mb-1">Fresh Perspective</h3>
-        <p>We’re new, bold, and driven by creativity — no recycled concepts here.</p>
-      </div>
-      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
-        <h3 class="font-bold mb-1">Client-Centric Approach</h3>
-        <p>We deeply personalize every event, aligning every detail with your goals.</p>
-      </div>
-      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
-        <h3 class="font-bold mb-1">Reliable Talent Network</h3>
-        <p>From DJs to decor artists, we collaborate with trusted professionals.</p>
-      </div>
-      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
-        <h3 class="font-bold mb-1">On-Time, On-Budget Delivery</h3>
-        <p>Efficient project management means no surprises and no delays.</p>
-      </div>
-      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
-        <h3 class="font-bold mb-1">Tech-Enhanced Events</h3>
-        <p>We integrate lighting, interactive zones, and media tech to elevate the experience.</p>
-      </div>
-      <div class="p-6 bg-white shadow-md border-l-4 border-[#fd1f4a] rounded-md">
-        <h3 class="font-bold mb-1">Scalable & Versatile</h3>
-        <p>From intimate private parties to full-scale college fests, we adapt to your scale.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Slide 5: Our Process -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
-
-  <div class="content-layer px-4">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">Our Process</h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
-      We follow a streamlined process to bring your vision to life with clarity, creativity, and confidence:
-    </p>
-
-    <div class="max-w-3xl mx-auto space-y-6 text-left text-gray-800 text-base sm:text-lg">
-      <!-- Step 1 -->
-      <div class="flex items-start gap-4">
-        <div class="text-3xl text-[#fd1f4a] font-bold">1</div>
-        <div>
-          <h3 class="font-semibold text-[#fd1f4a] mb-1">Discovery Session</h3>
-          <p>We dive deep into your goals, audience, and event expectations in a collaborative kickoff meeting.</p>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="flex items-start gap-4">
-        <div class="text-3xl text-[#fd1f4a] font-bold">2</div>
-        <div>
-          <h3 class="font-semibold text-[#fd1f4a] mb-1">Custom Proposal</h3>
-          <p>We present creative ideas, moodboards, timelines, and transparent pricing tailored to your needs.</p>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="flex items-start gap-4">
-        <div class="text-3xl text-[#fd1f4a] font-bold">3</div>
-        <div>
-          <h3 class="font-semibold text-[#fd1f4a] mb-1">Event Execution</h3>
-          <p>From vendor coordination to guest flow to real-time issue resolution — we make it all seamless.</p>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="flex items-start gap-4">
-        <div class="text-3xl text-[#fd1f4a] font-bold">4</div>
-        <div>
-          <h3 class="font-semibold text-[#fd1f4a] mb-1">Post-Event Wrap-Up</h3>
-          <p>We follow up with you for feedback, media handover, and next steps to strengthen future events.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Slide 6: Sample Event Concepts -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-tr from-white via-[#fd1f4a]/5 to-white"></div>
-
-  <div class="content-layer px-4">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">Sample Event Concepts</h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
-      Here are just a few of the unforgettable concepts we can bring to life for your next event:
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-gray-800 text-base sm:text-lg">
-      <!-- Concept 1 -->
-      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
-        <div class="text-4xl mb-3 text-[#fd1f4a]">🎧</div>
-        <h3 class="font-bold text-lg mb-1">Neon College Parties</h3>
-        <p>UV glow, DJs, and immersive lighting to fuel high-energy college nights.</p>
-      </div>
-
-      <!-- Concept 2 -->
-      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
-        <div class="text-4xl mb-3 text-[#fd1f4a]">🎤</div>
-        <h3 class="font-bold text-lg mb-1">Brand Launch Raves</h3>
-        <p>Turn product launches into nightlife experiences guests won’t forget.</p>
-      </div>
-
-      <!-- Concept 3 -->
-      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
-        <div class="text-4xl mb-3 text-[#fd1f4a]">🏖️</div>
-        <h3 class="font-bold text-lg mb-1">Beach Vibe Events</h3>
-        <p>Tropical theming, barefoot dancefloors, and sunset backdrops.</p>
-      </div>
-
-      <!-- Concept 4 -->
-      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
-        <div class="text-4xl mb-3 text-[#fd1f4a]">🕹️</div>
-        <h3 class="font-bold text-lg mb-1">Retro Game Zones</h3>
-        <p>Arcade meets nostalgia — ideal for corporate and college audiences alike.</p>
-      </div>
-
-      <!-- Concept 5 -->
-      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
-        <div class="text-4xl mb-3 text-[#fd1f4a]">🎪</div>
-        <h3 class="font-bold text-lg mb-1">Carnival Themes</h3>
-        <p>Whimsical setups with mini-games, candy carts, and live performers.</p>
-      </div>
-
-      <!-- Concept 6 -->
-      <div class="p-6 bg-white shadow-md rounded-xl border hover:shadow-xl transition text-center">
-        <div class="text-4xl mb-3 text-[#fd1f4a]">🧠</div>
-        <h3 class="font-bold text-lg mb-1">Interactive Workshops</h3>
-        <p>For teams or youth — creative, skill-based, and completely engaging.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Slide 10: Event Highlights -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-t from-white via-[#fd1f4a]/5 to-white"></div>
-
-  <div class="content-layer px-4">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">
-      Event Highlights
-    </h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-10 max-w-2xl mx-auto">
-      A glimpse into the unforgettable moments we've created.
-    </p>
-
-    <!-- Image Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <!-- Replace with real images -->
-      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
-        <img src="https://via.placeholder.com/500x300?text=Youth+Fest" alt="Youth Fest" class="w-full h-full object-cover" />
-      </div>
-      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
-        <img src="https://via.placeholder.com/500x300?text=Corporate+Launch" alt="Corporate Launch" class="w-full h-full object-cover" />
-      </div>
-      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
-        <img src="https://via.placeholder.com/500x300?text=Team+Retreat" alt="Team Retreat" class="w-full h-full object-cover" />
-      </div>
-      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
-        <img src="https://via.placeholder.com/500x300?text=Theme+Party" alt="Theme Party" class="w-full h-full object-cover" />
-      </div>
-      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
-        <img src="https://via.placeholder.com/500x300?text=Live+DJ+Set" alt="Live DJ" class="w-full h-full object-cover" />
-      </div>
-      <div class="overflow-hidden rounded-xl shadow-md hover:scale-105 transition">
-        <img src="https://via.placeholder.com/500x300?text=Artist+Showcase" alt="Artist Showcase" class="w-full h-full object-cover" />
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Slide 7: Testimonials -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-tl from-white via-[#fd1f4a]/10 to-white"></div>
-
-  <div class="content-layer px-4">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">What Clients Say</h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl">
-      Don’t just take our word for it. Here’s what our early clients have to say about working with Born to Banger:
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-      <!-- Testimonial 1 -->
-      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
-        <p class="text-gray-700 italic mb-3">
-          “Even as a new brand, Born to Banger impressed us with creativity and dedication. Our product launch felt world-class.”
-        </p>
-        <div class="text-sm font-semibold text-[#fd1f4a]">Sneha R., Startup Founder</div>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
-        <p class="text-gray-700 italic mb-3">
-          “They brought a fresh, exciting vibe to our college fest — students are still talking about it!”
-        </p>
-        <div class="text-sm font-semibold text-[#fd1f4a]">Rohan M., YouthX Festival Organizer</div>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
-        <p class="text-gray-700 italic mb-3">
-          “The planning was flawless, the vibe was unreal — exactly what we needed for our retreat.”
-        </p>
-        <div class="text-sm font-semibold text-[#fd1f4a]">Kavita T., Team Manager</div>
-      </div>
-
-      <!-- Testimonial 4 -->
-      <div class="bg-white border shadow-md rounded-xl p-6 text-left hover:shadow-lg transition">
-        <p class="text-gray-700 italic mb-3">
-          “Their decor, music coordination, and activities completely transformed the event. 10/10!”
-        </p>
-        <div class="text-sm font-semibold text-[#fd1f4a]">Aarav S., Private Client</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Slide 8: Let’s Create Something Epic -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
-
-  <div class="content-layer px-4 text-center">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">
-      Let’s Create Something Epic
-    </h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
-      Ready to make your event unforgettable? Contact us today and let’s start building magic together.
-    </p>
-
-    <!-- Contact Info -->
-    <div class="space-y-4 text-gray-800 text-base sm:text-lg max-w-md mx-auto">
-      <p>
-        📞 <strong>Phone:</strong>
-        <a href="tel:+919310759660" class="text-[#fd1f4a] underline hover:text-black transition">+91 9310759660</a>
-      </p>
-      <p>
-        ✉️ <strong>Email:</strong>
-        <a href="mailto:hello@borntobanger.com" class="text-[#fd1f4a] underline hover:text-black transition">hello@borntobanger.com</a>
-      </p>
-      <p>
-        📸 <strong>Instagram:</strong>
-        <a href="https://instagram.com/borntobanger" class="text-[#fd1f4a] underline hover:text-black transition">@borntobanger</a>
-      </p>
-      <p>
-        🌐 <strong>Website:</strong>
-        <a href="https://borntobanger.surajdev.com" class="text-[#fd1f4a] underline hover:text-black transition">borntobanger.surajdev.com</a>
-      </p>
-    </div>
-
-    <!-- CTA Button -->
-    <div class="mt-10">
+    <!-- Call to Action -->
+    <div class="flex flex-col sm:flex-row gap-4 mt-4">
       <a
-        href="https://wa.me/919310759660"
-        target="_blank"
-        class="inline-block bg-[#fd1f4a] text-white text-lg font-semibold px-6 py-3 rounded-full shadow-md hover:bg-[#e01b42] transition"
+        href="#services"
+        class="inline-block bg-white text-[#fd1f4a] font-semibold rounded-full px-6 py-3 text-sm sm:text-base hover:scale-105 transition"
       >
-        📲 Book Your Free Consultation
+        Explore Services
+      </a>
+      <a
+        href="mailto:hello@borntobanger.com"
+        class="inline-flex items-center justify-center border-2 border-white text-white font-medium rounded-full px-6 py-3 text-sm sm:text-base hover:bg-white hover:text-[#fd1f4a] transition"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z" />
+        </svg>
+        Mail Us
+      </a>
+    </div>
+
+    <!-- Social Links (mobile only) -->
+    <div class="flex space-x-4 mt-6 sm:mt-8 lg:hidden">
+      <a href="#" class="text-white hover:opacity-80 transition">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0..." /></svg>
+      </a>
+      <a href="#" class="text-white hover:opacity-80 transition">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5..." /></svg>
+      </a>
+      <a href="#" class="text-white hover:opacity-80 transition">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12..." /></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Slide 9: Our Other Ventures -->
-<section class="slide bg-white">
-  <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
 
-  <div class="content-layer px-4 text-center">
-    <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">
-      More Than Just Events
+<!-- Slide 2: Who We Are -->
+<section
+  class="slide relative bg-white flex items-center justify-center"
+>
+  <!-- Decorative accent -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-[#fd1f4a]/10 rounded-bl-[80px]"></div>
+  </div>
+
+  <div
+    class="content-layer relative px-6 py-12 sm:px-10 lg:px-20 xl:px-32 max-w-4xl w-full
+           flex flex-col items-center text-center space-y-8"
+  >
+    <!-- Heading -->
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#fd1f4a] leading-tight">
+      Who We Are
     </h2>
-    <p class="text-gray-700 text-lg sm:text-xl mb-10 max-w-2xl mx-auto">
-      We're a growing creative ecosystem. Check out our other ventures that complement and extend the Born to Banger experience.
+
+    <!-- Intro text -->
+    <p class="text-gray-700 text-base sm:text-lg md:text-xl max-w-3xl italic">
+      “At Born to Banger, we believe events shouldn’t just be attended—they should be experienced.”
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800 text-base sm:text-lg">
-      <!-- Venture 1: AdZola -->
-      <div class="p-6 bg-white border shadow-md rounded-xl hover:shadow-xl transition">
-        <h3 class="text-[#fd1f4a] font-bold text-xl mb-2">AdZola</h3>
-        <p class="mb-2">Your partner for performance-driven digital marketing, ad strategy, and online brand visibility.</p>
-        <p>
-          🌐 <a href="https://www.adzola.com" class="underline text-[#fd1f4a] hover:text-black transition">www.adzola.com</a><br />
-          📸 <a href="https://instagram.com/adzola.in" class="underline text-[#fd1f4a] hover:text-black transition">@adzola.in</a>
+    <!-- Features grid -->
+    <ul class="w-full grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 text-left">
+      <li class="flex items-start space-x-3">
+        <div class="mt-1">
+          <div class="w-6 h-6 bg-[#fd1f4a] rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">✓</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">We Create Vibes</h3>
+          <p class="text-gray-600 text-sm sm:text-base">Unique energy we design and amplify.</p>
+        </div>
+      </li>
+      <li class="flex items-start space-x-3">
+        <div class="mt-1">
+          <div class="w-6 h-6 bg-[#fd1f4a] rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">✓</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">We Build Memories</h3>
+          <p class="text-gray-600 text-sm sm:text-base">Moments that last beyond the event.</p>
+        </div>
+      </li>
+      <li class="flex items-start space-x-3">
+        <div class="mt-1">
+          <div class="w-6 h-6 bg-[#fd1f4a] rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">✓</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">We Go Beyond Ordinary</h3>
+          <p class="text-gray-600 text-sm sm:text-base">No templates, just creativity.</p>
+        </div>
+      </li>
+      <li class="flex items-start space-x-3">
+        <div class="mt-1">
+          <div class="w-6 h-6 bg-[#fd1f4a] rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">✓</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">Our Mission</h3>
+          <p class="text-gray-600 text-sm sm:text-base">Make your event unforgettable.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- Slide 3: Our Services -->
+<section
+  class="slide relative bg-white flex justify-center
+         h-auto min-h-screen sm:h-screen sm:overflow-hidden"
+>
+  <!-- Accent Shape -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute bottom-0 left-0 w-1/2 h-1/3 bg-[#fd1f4a]/10 rounded-tr-[80px]"></div>
+  </div>
+
+  <div class="content-layer relative w-full max-w-5xl px-6 py-12 sm:px-10 lg:px-20 xl:px-32 flex flex-col">
+    <!-- Sticky Heading -->
+    <h2
+      class="sticky top-0 bg-white pt-6 pb-4 text-3xl sm:text-4xl md:text-5xl
+             font-extrabold text-[#fd1f4a] text-center leading-tight z-10"
+    >
+      Our Services
+    </h2>
+
+    <!-- Intro -->
+    <p
+      class="sticky top-[4.5rem] bg-white pt-2 pb-6 text-gray-700 text-base sm:text-lg
+             md:text-xl max-w-3xl mx-auto text-center z-10"
+    >
+      We craft unforgettable experiences. Scroll down to explore all we offer:
+    </p>
+
+    <!-- Services Grid -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6"
+    >
+<!-- Card: Theme Party Design and Decor -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M4 4h16v2H4zm0 6h10v2H4zm0 6h7v2H4z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Theme Party Design & Decor</h3>
+  <p class="text-gray-600 text-sm flex-grow">Immersive, Instagram-worthy setups for every party theme.</p>
+</div>
+
+<!-- Card: Artist Management -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Artist Management</h3>
+  <p class="text-gray-600 text-sm flex-grow">From DJs to fire acts, we book and manage top-tier talent.</p>
+</div>
+
+<!-- Card: Team Building -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3zm-8 0c1.7 0 3-1.3 3-3S9.7 5 8 5s-3 1.3-3 3 1.3 3 3 3zm0 2c-2.3 0-7 1.2-7 3.5V20h14v-3.5c0-2.3-4.7-3.5-7-3.5zm8 0c-.3 0-.7 0-1 .1 1.2.8 2 1.8 2 3.4V20h6v-3.5c0-2.3-4.7-3.5-7-3.5z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Team Building</h3>
+  <p class="text-gray-600 text-sm flex-grow">Interactive programs to spark collaboration and fun.</p>
+</div>
+
+<!-- Card: Party Planner & Organizer -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 15h2v-2h-2v2zm1-14C6.5 3 2 7.5 2 13s4.5 10 10 10 10-4.5 10-10S17.5 3 12 3zm1 10h-2v-6h2v6z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Party Planner & Organizer</h3>
+  <p class="text-gray-600 text-sm flex-grow">We handle it all — invites, entertainment, and wow moments.</p>
+</div>
+
+<!-- Card: Games and Activities -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M5 8h14V6H5v2zm0 4h14v-2H5v2zm0 4h14v-2H5v2zm0 4h14v-2H5v2z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Games & Activities</h3>
+  <p class="text-gray-600 text-sm flex-grow">Fun-filled options for all ages, from carnival to virtual.</p>
+</div>
+
+<!-- Card: Youth & College Festival Curation -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M4 22h16v-2H4v2zm6-16h4v10h-4V6zm6 4h4v6h-4v-6zm-12 2h4v4H4v-4z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Youth & College Fest Curation</h3>
+  <p class="text-gray-600 text-sm flex-grow">Vibrant experiences that bring energy to every campus.</p>
+</div>
+
+<!-- Card: Corporate Event & Brand Experiences -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm4 0h14v-2H7v2zm0-4h14v-2H7v2zm0-4h14V7H7v2zm-4 0h2V7H3v2z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Corporate & Brand Experiences</h3>
+  <p class="text-gray-600 text-sm flex-grow">Immersive activations tailored to amplify your brand.</p>
+</div>
+
+<!-- Card: Custom Experiences (Etc.) -->
+<div class="bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition p-6 flex flex-col h-full">
+  <div class="flex-shrink-0 mb-4">
+    <div class="w-12 h-12 bg-[#fd1f4a]/20 text-[#fd1f4a] rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M10 4h4v2h-4V4zm-2 4h8v2H8V8zm-4 4h16v2H4v-2zm2 4h12v2H6v-2z"/>
+      </svg>
+    </div>
+  </div>
+  <h3 class="font-semibold text-gray-800 mb-2">Custom Experiences</h3>
+  <p class="text-gray-600 text-sm flex-grow">Tell us your vibe — we’ll bring it to life beyond expectations.</p>
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- Slide 4: Why Choose Us (Card Grid, Mobile-First, Full-Screen Snap) -->
+<section
+  class="slide relative bg-white flex justify-center
+         h-auto min-h-screen      /* mobile: scroll */
+         sm:h-screen sm:overflow-hidden"
+>
+  <!-- Light gradient overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white to-[#fd1f4a]/10 pointer-events-none"></div>
+
+  <div class="content-layer relative w-full max-w-6xl px-6 py-12 sm:px-10 lg:px-20 xl:px-32 flex flex-col">
+    <!-- Heading -->
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#fd1f4a] text-center mb-8">
+      Why Choose Us
+    </h2>
+
+    <!-- Card Grid -->
+    <div class="grid grid-cols-1 gap-6
+                sm:grid-cols-2 lg:grid-cols-3
+                auto-rows-fr">
+      <!-- Card 1 -->
+      <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6 flex flex-col">
+        <div class="w-12 h-12 mb-4 text-[#fd1f4a]">
+          <!-- Icon: fresh perspective -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-2">Fresh Perspective</h3>
+        <p class="text-gray-600 text-sm flex-grow">
+          Bold creativity that breaks the mold—no recycled ideas here.
         </p>
       </div>
 
-      <!-- Venture 2: Add more if needed -->
-      <div class="p-6 bg-white border shadow-md rounded-xl hover:shadow-xl transition">
-        <h3 class="text-[#fd1f4a] font-bold text-xl mb-2">Coming Soon</h3>
-        <p class="mb-2">We're constantly building. Stay tuned for more projects focused on creativity, tech, and youth culture.</p>
-        <p>💡 New ideas in the works... 👀</p>
+      <!-- Card 2 -->
+      <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6 flex flex-col">
+        <div class="w-12 h-12 mb-4 text-[#fd1f4a]">
+          <!-- Icon: client-centric -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-2">Client-Centric</h3>
+        <p class="text-gray-600 text-sm flex-grow">
+          Every detail tailored to your vision and goals.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6 flex flex-col">
+        <div class="w-12 h-12 mb-4 text-[#fd1f4a]">
+          <!-- Icon: trusted network -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-2">Trusted Network</h3>
+        <p class="text-gray-600 text-sm flex-grow">
+          Access to top DJs, artists, and vendors you can rely on.
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6 flex flex-col">
+        <div class="w-12 h-12 mb-4 text-[#fd1f4a]">
+          <!-- Icon: on-time on-budget -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-2">On-Time, On-Budget</h3>
+        <p class="text-gray-600 text-sm flex-grow">
+          Reliable execution with no surprises or hidden costs.
+        </p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6 flex flex-col">
+        <div class="w-12 h-12 mb-4 text-[#fd1f4a]">
+          <!-- Icon: tech-enhanced -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 21l3.75-.75M14.25 17l.75 4-3.75-.75M12 3v14m-4-4h8" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-2">Tech-Enhanced</h3>
+        <p class="text-gray-600 text-sm flex-grow">
+          Cutting-edge sound, lighting, and interactive tech.
+        </p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6 flex flex-col">
+        <div class="w-12 h-12 mb-4 text-[#fd1f4a]">
+          <!-- Icon: scalable -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v16H4z M10 10h4v4h-4z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-2">Scalable & Versatile</h3>
+        <p class="text-gray-600 text-sm flex-grow">
+          From intimate gatherings to full-scale festivals.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: Our Process - Visual Timeline -->
+<section class="snap-start min-h-screen w-full flex items-center justify-center bg-white px-4 py-12 md:px-16 lg:px-24">
+  <div class="w-full max-w-6xl">
+    <!-- Heading -->
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center text-[#fd1f4a] mb-12">
+      Our Process
+    </h2>
+
+    <!-- Timeline container -->
+    <div class="relative border-l-4 border-[#fd1f4a] ml-4 pl-6 space-y-12 md:hidden">
+      <!-- Mobile Timeline Items -->
+      <div class="relative">
+        <div class="absolute -left-7 top-1 w-6 h-6 bg-[#fd1f4a] rounded-full border-4 border-white"></div>
+        <h3 class="text-xl font-semibold text-gray-800">1. Discovery Session</h3>
+        <p class="text-gray-600 mt-1">
+          We dive deep into your goals and vision to craft a tailored strategy.
+        </p>
+      </div>
+      <div class="relative">
+        <div class="absolute -left-7 top-1 w-6 h-6 bg-[#fd1f4a] rounded-full border-4 border-white"></div>
+        <h3 class="text-xl font-semibold text-gray-800">2. Custom Proposal</h3>
+        <p class="text-gray-600 mt-1">
+          Moodboards, pricing & timeline — uniquely built for your event.
+        </p>
+      </div>
+      <div class="relative">
+        <div class="absolute -left-7 top-1 w-6 h-6 bg-[#fd1f4a] rounded-full border-4 border-white"></div>
+        <h3 class="text-xl font-semibold text-gray-800">3. Event Execution</h3>
+        <p class="text-gray-600 mt-1">
+          We coordinate vendors and manage every detail for a flawless day.
+        </p>
+      </div>
+      <div class="relative">
+        <div class="absolute -left-7 top-1 w-6 h-6 bg-[#fd1f4a] rounded-full border-4 border-white"></div>
+        <h3 class="text-xl font-semibold text-gray-800">4. Post-Event Wrap-Up</h3>
+        <p class="text-gray-600 mt-1">
+          Review, share highlights, and set the stage for what’s next.
+        </p>
+      </div>
+    </div>
+
+    <!-- Desktop Horizontal Process -->
+    <div class="hidden md:flex justify-between items-start relative mt-12">
+      <div class="absolute top-6 left-0 right-0 h-1 bg-gray-200 z-0"></div>
+
+      <!-- Step 1 -->
+      <div class="relative z-10 text-center w-1/4 px-4">
+        <div class="w-10 h-10 mx-auto rounded-full bg-[#fd1f4a] text-white font-bold flex items-center justify-center mb-4">
+          1
+        </div>
+        <h3 class="font-semibold text-gray-800">Discovery Session</h3>
+        <p class="text-gray-600 text-sm mt-1">
+          Understand goals, audience, and brand vibe.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative z-10 text-center w-1/4 px-4">
+        <div class="w-10 h-10 mx-auto rounded-full bg-[#fd1f4a] text-white font-bold flex items-center justify-center mb-4">
+          2
+        </div>
+        <h3 class="font-semibold text-gray-800">Custom Proposal</h3>
+        <p class="text-gray-600 text-sm mt-1">
+          Strategy, visual inspiration, and clear budget.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative z-10 text-center w-1/4 px-4">
+        <div class="w-10 h-10 mx-auto rounded-full bg-[#fd1f4a] text-white font-bold flex items-center justify-center mb-4">
+          3
+        </div>
+        <h3 class="font-semibold text-gray-800">Event Execution</h3>
+        <p class="text-gray-600 text-sm mt-1">
+          Vendors, setup, logistics — handled perfectly.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="relative z-10 text-center w-1/4 px-4">
+        <div class="w-10 h-10 mx-auto rounded-full bg-[#fd1f4a] text-white font-bold flex items-center justify-center mb-4">
+          4
+        </div>
+        <h3 class="font-semibold text-gray-800">Post-Event Wrap-Up</h3>
+        <p class="text-gray-600 text-sm mt-1">
+          Wrap, review, and reflect on success.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: Sample Event Concepts (Improved Layout) -->
+<section class="slide snap-start min-h-screen w-full bg-white relative px-4 py-16 flex items-center justify-center">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gradient-to-tr from-white via-[#fd1f4a]/10 to-white z-0"></div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto">
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <h2 class="text-[#fd1f4a] text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">
+        Sample Event Concepts
+      </h2>
+      <p class="text-gray-700 text-base sm:text-lg md:text-xl max-w-3xl mx-auto">
+        Here are some unforgettable event ideas we can bring to life:
+      </p>
+    </div>
+
+    <!-- Mobile Carousel -->
+    <div class="block sm:hidden overflow-x-auto scroll-smooth flex gap-4 px-1 pb-4 scroll-snap-x snap-x snap-mandatory">
+      <!-- Reusable Mobile Card -->
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎧</div>
+        <h3 class="font-semibold text-lg mb-1">Neon College Parties</h3>
+        <p class="text-sm text-gray-600">UV glow, DJs, and immersive lighting to fuel high-energy college nights.</p>
+      </div>
+
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎤</div>
+        <h3 class="font-semibold text-lg mb-1">Brand Launch Raves</h3>
+        <p class="text-sm text-gray-600">Turn product launches into unforgettable nightlife experiences.</p>
+      </div>
+
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🏖️</div>
+        <h3 class="font-semibold text-lg mb-1">Beach Vibe Events</h3>
+        <p class="text-sm text-gray-600">Tropical themes, barefoot dancefloors, and sunset visuals.</p>
+      </div>
+
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🕹️</div>
+        <h3 class="font-semibold text-lg mb-1">Retro Game Zones</h3>
+        <p class="text-sm text-gray-600">Arcade nostalgia reimagined for modern events.</p>
+      </div>
+
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎪</div>
+        <h3 class="font-semibold text-lg mb-1">Carnival Themes</h3>
+        <p class="text-sm text-gray-600">Whimsical decor, candy carts, and circus-inspired fun.</p>
+      </div>
+
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🧠</div>
+        <h3 class="font-semibold text-lg mb-1">Interactive Workshops</h3>
+        <p class="text-sm text-gray-600">Creative and skill-based formats for teams or youth.</p>
+      </div>
+
+      <div class="min-w-[80%] snap-center bg-white rounded-2xl shadow-md border border-gray-200 p-6 text-center h-[300px] flex flex-col justify-center">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎬</div>
+        <h3 class="font-semibold text-lg mb-1">Movie Night Festivals</h3>
+        <p class="text-sm text-gray-600">Outdoor screenings, comfy lounges, popcorn & vibes.</p>
+      </div>
+    </div>
+
+    <!-- Desktop Grid -->
+    <div class="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-6 mt-10 px-4">
+      <!-- Reuse the same card structure -->
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎧</div>
+        <h3 class="font-semibold text-lg mb-1">Neon College Parties</h3>
+        <p class="text-sm text-gray-600">UV glow, DJs, and immersive lighting to fuel high-energy college nights.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎤</div>
+        <h3 class="font-semibold text-lg mb-1">Brand Launch Raves</h3>
+        <p class="text-sm text-gray-600">Turn product launches into unforgettable nightlife experiences.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🏖️</div>
+        <h3 class="font-semibold text-lg mb-1">Beach Vibe Events</h3>
+        <p class="text-sm text-gray-600">Tropical themes, barefoot dancefloors, and sunset visuals.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🕹️</div>
+        <h3 class="font-semibold text-lg mb-1">Retro Game Zones</h3>
+        <p class="text-sm text-gray-600">Arcade nostalgia reimagined for modern events.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎪</div>
+        <h3 class="font-semibold text-lg mb-1">Carnival Themes</h3>
+        <p class="text-sm text-gray-600">Whimsical decor, candy carts, and circus-inspired fun.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🧠</div>
+        <h3 class="font-semibold text-lg mb-1">Interactive Workshops</h3>
+        <p class="text-sm text-gray-600">Creative and skill-based formats for teams or youth.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md border p-6 text-center hover:shadow-xl transition col-span-full md:col-span-1 md:col-start-2">
+        <div class="text-5xl mb-3 text-[#fd1f4a]">🎬</div>
+        <h3 class="font-semibold text-lg mb-1">Movie Night Festivals</h3>
+        <p class="text-sm text-gray-600">Outdoor screenings, comfy lounges, popcorn & vibes.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-    </div>
+<!-- Slide 7: Scrollable Testimonials with content-fit cards -->
+<section class="slide snap-start min-h-screen w-full bg-gradient-to-b from-white to-[#fff5f7] flex flex-col items-center px-4 py-16">
 
-    <!-- Navigation Buttons -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-4">
-      <button
-        id="prevBtn"
-        class="bg-white text-[#fd1f4a] shadow-xl hover:scale-110 transition-all p-4 rounded-full focus:outline-none"
-        title="Previous"
-      >
-        &#8592;
-      </button>
-      <button
-        id="nextBtn"
-        class="bg-white text-[#fd1f4a] shadow-xl hover:scale-110 transition-all p-4 rounded-full focus:outline-none"
-        title="Next"
-      >
-        &#8594;
-      </button>
-    </div>
+  <div class="w-full max-w-6xl mx-auto text-center mb-8">
+    <h2 class="text-[#fd1f4a] text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">
+      What Our Clients Say
+    </h2>
+    <p class="text-gray-600 text-base sm:text-lg max-w-xl mx-auto">
+      A few kind words from people who trusted us with their biggest events.
+    </p>
   </div>
 
-  <!-- JavaScript: Scroll + Navigation + Parallax -->
+  <!-- Scroll container -->
+  <div class="flex flex-col space-y-10 overflow-y-auto snap-y snap-mandatory h-[70vh] max-w-3xl w-full px-4 py-6 bg-white rounded-3xl shadow-lg">
+
+<!-- Testimonial 1 -->
+<blockquote class="relative border-l-4 border-[#fd1f4a] p-6 rounded-xl shadow-md snap-start">
+  <div class="text-6xl text-[#fd1f4a] absolute -top-6 left-6 opacity-10 select-none">“</div>
+  <p class="text-gray-700 text-base leading-relaxed relative z-10">
+    My daughter’s birthday party was like a dream. The decor, games, and music were on point — kids had a blast!
+  </p>
+  <footer class="mt-4">
+    <p class="font-semibold text-[#fd1f4a]">Nisha Verma</p>
+    <p class="text-xs text-gray-500">Parent, Birthday Bash</p>
+  </footer>
+</blockquote>
+
+<!-- Testimonial 2 -->
+<blockquote class="relative border-l-4 border-[#fd1f4a] p-6 rounded-xl shadow-md snap-start">
+  <div class="text-6xl text-[#fd1f4a] absolute -top-6 left-6 opacity-10 select-none">“</div>
+  <p class="text-gray-700 text-base leading-relaxed relative z-10">
+    The kitty party setup was chic and cozy. Loved the personalized touch and effortless glam!
+  </p>
+  <footer class="mt-4">
+    <p class="font-semibold text-[#fd1f4a]">Manisha Batra</p>
+    <p class="text-xs text-gray-500">Host, Kitty Circle Group</p>
+  </footer>
+</blockquote>
+
+<!-- Testimonial 3 -->
+<blockquote class="relative border-l-4 border-[#fd1f4a] p-6 rounded-xl shadow-md snap-start">
+  <div class="text-6xl text-[#fd1f4a] absolute -top-6 left-6 opacity-10 select-none">“</div>
+  <p class="text-gray-700 text-base leading-relaxed relative z-10">
+    The caricature artist was a hit! Everyone left with a fun memory they could frame. Brilliant idea!
+  </p>
+  <footer class="mt-4">
+    <p class="font-semibold text-[#fd1f4a]">Rahul Chauhan</p>
+    <p class="text-xs text-gray-500">Guest, Corporate Mela</p>
+  </footer>
+</blockquote>
+
+<!-- Testimonial 4 -->
+<blockquote class="relative border-l-4 border-[#fd1f4a] p-6 rounded-xl shadow-md snap-start">
+  <div class="text-6xl text-[#fd1f4a] absolute -top-6 left-6 opacity-10 select-none">“</div>
+  <p class="text-gray-700 text-base leading-relaxed relative z-10">
+    The craft activity corner was a brilliant addition! Kids and parents both stayed creatively engaged.
+  </p>
+  <footer class="mt-4">
+    <p class="font-semibold text-[#fd1f4a]">Anjali Deshmukh</p>
+    <p class="text-xs text-gray-500">Organizer, Kids Carnival</p>
+  </footer>
+</blockquote>
+
+<!-- Testimonial 5 -->
+<blockquote class="relative border-l-4 border-[#fd1f4a] p-6 rounded-xl shadow-md snap-start">
+  <div class="text-6xl text-[#fd1f4a] absolute -top-6 left-6 opacity-10 select-none">“</div>
+  <p class="text-gray-700 text-base leading-relaxed relative z-10">
+    Honestly the smoothest and most fun birthday party we’ve ever hosted. So many happy faces!
+  </p>
+  <footer class="mt-4">
+    <p class="font-semibold text-[#fd1f4a]">Karan Mehta</p>
+    <p class="text-xs text-gray-500">Father, Birthday Celebration</p>
+  </footer>
+</blockquote>
+
+
+  </div>
+</section>
+    
+    
+    <!-- Slide 8: Happy Moments -->
+<section class="slide snap-start min-h-screen w-full bg-white px-4 py-12 flex flex-col items-center justify-start">
+  <!-- Heading -->
+  <div class="text-center mb-10">
+    <h2 class="text-[#fd1f4a] text-4xl sm:text-5xl font-extrabold mb-4">Happy Moments Captured</h2>
+    <p class="text-gray-700 text-lg sm:text-xl max-w-xl mx-auto">
+      A glimpse into the joy and excitement at our events.
+    </p>
+  </div>
+
+  <!-- Image Grid -->
+  <div class="grid grid-cols-3 gap-2 max-w-[900px] w-full">
+    <!-- Grid Item -->
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?party,1">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?party,1" alt="Moment 1"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?celebration,2">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?celebration,2" alt="Moment 2"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?dj,3">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?dj,3" alt="Moment 3"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?crowd,4">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?crowd,4" alt="Moment 4"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?friends,5">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?friends,5" alt="Moment 5"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?event,6">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?event,6" alt="Moment 6"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?music,7">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?music,7" alt="Moment 7"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?party,8">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?party,8" alt="Moment 8"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+    <a data-fslightbox="gallery" href="https://source.unsplash.com/800x800/?dance,9">
+      <div class="w-full aspect-square overflow-hidden rounded-md">
+        <img src="https://source.unsplash.com/800x800/?dance,9" alt="Moment 9"
+             class="w-full h-full object-cover hover:scale-110 transition duration-300" />
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<script src="https://cdn.jsdelivr.net/npm/fslightbox/index.min.js"></script>
+
+
+<!-- Slide 9: Contact (Alternate Style) -->
+<section class="slide snap-start min-h-screen bg-gradient-to-br from-white via-[#ffeef1] to-white px-6 py-12 flex flex-col justify-center items-center text-center">
+  <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    
+    <!-- Left Side: Info Text -->
+    <div class="text-left md:text-left space-y-6">
+      <h2 class="text-[#fd1f4a] text-4xl sm:text-5xl font-extrabold">
+        Let's Create Magic Together ✨
+      </h2>
+      <p class="text-gray-700 text-base sm:text-lg">
+        Ready to make your event unforgettable? Reach out to us — we’d love to bring your vision to life.
+      </p>
+      
+      <div class="space-y-3 text-gray-800 text-sm sm:text-base">
+        <p>📞 <strong>Phone:</strong> <a href="tel:+919310759660" class="underline text-[#fd1f4a]">+91 9310759660</a></p>
+        <p>✉️ <strong>Email:</strong> <a href="mailto:hello@borntobanger.com" class="underline text-[#fd1f4a]">hello@borntobanger.com</a></p>
+        <p>📸 <strong>Instagram:</strong> <a href="https://instagram.com/borntobanger" class="underline text-[#fd1f4a]">@borntobanger</a></p>
+        <p>🌐 <strong>Website:</strong> <a href="https://borntobanger.surajdev.com" class="underline text-[#fd1f4a]">borntobanger.surajdev.com</a></p>
+      </div>
+
+      <div class="pt-4">
+        <a href="https://wa.me/919310759660" target="_blank"
+           class="inline-block bg-[#fd1f4a] text-white px-6 py-3 rounded-full shadow hover:bg-[#e01b42] transition font-semibold text-base sm:text-lg">
+          📲 Book a Free Consultation
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Side: Visual Element -->
+    <div class="w-full h-full flex justify-center items-center">
+      <img src="https://source.unsplash.com/400x400/?event,party" alt="Event contact" class="rounded-2xl shadow-lg w-full max-w-sm">
+    </div>
+  </div>
+</section>
+
+
+    <!-- Slide 9: Our Other Ventures -->
+    <section class="slide bg-white">
+      <div class="bg-layer bg-gradient-to-br from-white via-[#fd1f4a]/10 to-white"></div>
+      <div class="content-layer flex flex-col items-center justify-center h-full text-center p-6">
+        <h2 class="text-[#fd1f4a] text-5xl sm:text-6xl font-extrabold mb-6">More Than Just Events</h2>
+        <p class="text-gray-700 text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
+          We're a growing creative ecosystem. Check out our other ventures:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left text-gray-800">
+          <div class="p-6 bg-white border shadow-md rounded-xl hover:shadow-xl transition">
+            <h3 class="text-[#fd1f4a] font-bold text-xl mb-2">AdZola</h3>
+            <p>Your partner for performance-driven digital marketing.</p>
+            <p>🌐 <a href="https://www.adzola.com" class="underline text-[#fd1f4a]">adzola.com</a></p>
+          </div>
+          <div class="p-6 bg-white border shadow-md rounded-xl hover:shadow-xl transition">
+            <h3 class="text-[#fd1f4a] font-bold text-xl mb-2">Coming Soon</h3>
+            <p>More creative ventures on the horizon—stay tuned!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Optional: update progress bar on scroll -->
   <script>
-    const wrapper = document.getElementById("slides-wrapper");
-    const slides = document.querySelectorAll(".slide");
-    const bgLayers = document.querySelectorAll(".bg-layer");
-    const progressFill = document.getElementById("progress-fill");
-
-    let currentIndex = 0;
-    const total = slides.length;
-
-    function updateSlide() {
-      wrapper.style.transform = `translateX(-${currentIndex * 100}vw)`;
-      bgLayers.forEach(bg => {
-        bg.style.transform = `translateX(-${currentIndex * 50}vw)`;
-      });
-      progressFill.style.width = `${((currentIndex + 1) / total) * 100}%`;
-    }
-
-    document.getElementById("nextBtn").onclick = () => {
-      currentIndex = (currentIndex + 1) % total;
-      updateSlide();
-    };
-
-    document.getElementById("prevBtn").onclick = () => {
-      currentIndex = (currentIndex - 1 + total) % total;
-      updateSlide();
-    };
-
-    // Scroll wheel navigation
-    let scrollCooldown = false;
-    window.addEventListener("wheel", (e) => {
-      if (scrollCooldown) return;
-      scrollCooldown = true;
-      currentIndex = e.deltaY > 0
-        ? (currentIndex + 1) % total
-        : (currentIndex - 1 + total) % total;
-      updateSlide();
-      setTimeout(() => scrollCooldown = false, 1000);
+    const wrapper = document.getElementById('slides-wrapper');
+    const fill = document.getElementById('progress-fill');
+    wrapper.addEventListener('scroll', () => {
+      const p = wrapper.scrollTop / (wrapper.scrollHeight - wrapper.clientHeight);
+      fill.style.width = `${p * 100}%`;
     });
-
-    // Touch swipe navigation
-    let startX = 0;
-    window.addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-    });
-
-    window.addEventListener("touchend", e => {
-      const deltaX = e.changedTouches[0].clientX - startX;
-      if (Math.abs(deltaX) > 50) {
-        currentIndex = deltaX < 0
-          ? (currentIndex + 1) % total
-          : (currentIndex - 1 + total) % total;
-        updateSlide();
-      }
-    });
-
-    // Initialize
-    updateSlide();
   </script>
 </body>
 </html>

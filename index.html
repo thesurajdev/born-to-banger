@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="servicesApp()" x-cloak>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,10 @@
   <!-- AOS - Animate On Scroll -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+    <!--fgg-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -53,6 +57,15 @@
         },
       },
     }
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true
+  });
+});
   </script>
 
   <!-- Custom Styles -->
@@ -712,6 +725,9 @@
           0 0 60px 12px rgba(255, 182, 193, 0.7);
       }
     }
+    
+      [x-cloak] { display: none !important; }
+  .modal-open { overflow: hidden; }
   </style>
 
   <!-- SEO: canonical URL, Open Graph tags -->
@@ -993,131 +1009,739 @@
 </section>
 
 <!--Service Section-->
-<section 
-  id="services" 
-  class="w-full py-24 relative"
-  aria-labelledby="services-heading"
->
-  <!-- Background subtle pink gradient overlay -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-pinkAccent/20 via-white/80 to-white/100 animate-fade-in"></div>
+  <!-- Services Section -->
+  <section id="services" class="w-full py-24 relative" aria-labelledby="services-heading">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-pink-100/30 via-white/80 to-white animate-fade-in"></div>
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
+      <h2 id="services-heading" class="text-4xl font-extrabold mb-4 text-black text-center" data-aos="fade-up">
+        Our Services
+      </h2>
+      <p class="max-w-2xl mx-auto mb-12 text-center text-gray-700 text-lg" data-aos="fade-up" data-aos-delay="200">
+        From unique experiences to essential party services, we handle it all — beautifully and professionally.
+      </p>
 
-  <div class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24">
-    <h2 
-      id="services-heading" 
-      class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text"
-      data-aos="fade-up"
-    >
-      Our Services
-    </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Core Services -->
+        <article class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6 text-[#fd1f4a]"><i class="fas fa-briefcase text-4xl"></i></div>
+          <h3 class="text-2xl font-semibold mb-4 text-black text-center">Core Services</h3>
+          <ul class="space-y-2 text-gray-700 text-base leading-relaxed">
+            <li>
+              <button @click="open('theme-party')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-paint-roller text-[#fd1f4a]"></i> Theme Party Design & Decor
+              </button>
+            </li>
+            <li>
+              <button @click="open('artists-management')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-users text-[#fd1f4a]"></i> Artists Management
+              </button>
+            </li>
+            <li>
+              <button @click="open('team-building')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-users-cog text-[#fd1f4a]"></i> Team Building
+              </button>
+            </li>
+            <li>
+              <button @click="open('party-planner')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-calendar-check text-[#fd1f4a]"></i> Party Planner & Organizer
+              </button>
+            </li>
+            <li>
+              <button @click="open('games-activities')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-gamepad text-[#fd1f4a]"></i> Games & Activities
+              </button>
+            </li>
+            <li>
+              <button @click="open('youth-fest')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-graduation-cap text-[#fd1f4a]"></i> Youth & College Fest Curation
+              </button>
+            </li>
+            <li>
+              <button @click="open('corporate')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-building text-[#fd1f4a]"></i> Corporate & Brand Experiences
+              </button>
+            </li>
+            <li>
+              <button @click="open('custom-experiences')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-star text-[#fd1f4a]"></i> Custom Experiences
+              </button>
+            </li>
+          </ul>
+        </article>
 
-    <p class="max-w-2xl mx-auto mb-12 text-center text-gray-700 text-lg" data-aos="fade-up" data-aos-delay="200">
-      From intimate celebrations to grand events, we provide all the creative touches and essentials to make your party truly unforgettable.
-    </p>
+        <!-- Decor & Styling -->
+        <article class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6 text-[#fd1f4a]"><i class="fas fa-swatchbook text-4xl"></i></div>
+          <h3 class="text-2xl font-semibold mb-4 text-black text-center">Decor & Styling</h3>
+          <ul class="space-y-2 text-gray-700 text-base leading-relaxed">
+            <li>
+              <button @click="open('theme-decor')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-paint-roller text-[#fd1f4a]"></i> Theme Decor
+              </button>
+            </li>
+            <li>
+              <button @click="open('balloon-arches')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-ribbon text-[#fd1f4a]"></i> Balloon Arches
+              </button>
+            </li>
+            <li>
+              <button @click="open('custom-themes')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-palette text-[#fd1f4a]"></i> Custom Themes
+              </button>
+            </li>
+            <li>
+              <button @click="open('custom-backdrops')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-image text-[#fd1f4a]"></i> Custom Backdrops
+              </button>
+            </li>
+            <li>
+              <button @click="open('entrance-arches')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-door-open text-[#fd1f4a]"></i> Entrance Arches
+              </button>
+            </li>
+            <li>
+              <button @click="open('table-styling')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-chair text-[#fd1f4a]"></i> Table & Chair Styling
+              </button>
+            </li>
+          </ul>
+        </article>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-      <!-- Celebrations -->
-      <article 
-        tabindex="0" 
-        class="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] hover-card"
-        data-aos="fade-up"
-        data-aos-delay="300"
+        <!-- Catering -->
+        <article class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6 text-[#fd1f4a]"><i class="fas fa-utensils text-4xl"></i></div>
+          <h3 class="text-2xl font-semibold mb-4 text-black text-center">Catering</h3>
+          <ul class="space-y-2 text-gray-700 text-base leading-relaxed">
+            <li>
+              <button @click="open('multi-cuisine')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-pizza-slice text-[#fd1f4a]"></i> Multi-Cuisine Food
+              </button>
+            </li>
+            <li>
+              <button @click="open('dessert-counters')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-ice-cream text-[#fd1f4a]"></i> Dessert & Ice Cream Counters
+              </button>
+            </li>
+            <li>
+              <button @click="open('kids-snack')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-cookie text-[#fd1f4a]"></i> Kids' Snack Zone
+              </button>
+            </li>
+            <li>
+              <button @click="open('live-food')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-fire text-[#fd1f4a]"></i> Live Food Stalls
+              </button>
+            </li>
+            <li>
+              <button @click="open('snacks')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-candy-cane text-[#fd1f4a]"></i> Popcorn & Candy Floss
+              </button>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Add-on Services -->
+        <article class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6 text-[#fd1f4a]"><i class="fas fa-plus-circle text-4xl"></i></div>
+          <h3 class="text-2xl font-semibold mb-4 text-black text-center">Add-on Services</h3>
+          <ul class="space-y-2 text-gray-700 text-base leading-relaxed">
+            <li>
+              <button @click="open('photographer')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-camera text-[#fd1f4a]"></i> Photographer
+              </button>
+            </li>
+            <li>
+              <button @click="open('music-dj')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-music text-[#fd1f4a]"></i> Music / DJ
+              </button>
+            </li>
+            <li>
+              <button @click="open('host')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-microphone text-[#fd1f4a]"></i> Host / Emcee
+              </button>
+            </li>
+            <li>
+              <button @click="open('lights-sound')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-lightbulb text-[#fd1f4a]"></i> Lights & Sound Setup
+              </button>
+            </li>
+            <li>
+              <button @click="open('security')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-shield-alt text-[#fd1f4a]"></i> Security & Bouncers
+              </button>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Fun Activities -->
+        <article class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6 text-[#fd1f4a]"><i class="fas fa-theater-masks text-4xl"></i></div>
+          <h3 class="text-2xl font-semibold mb-4 text-black text-center">Fun Activities</h3>
+          <ul class="space-y-2 text-gray-700 text-base leading-relaxed max-h-64 overflow-y-auto pr-2">
+            <li>
+              <button @click="open('caricature')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-pencil text-[#fd1f4a]"></i> Caricature Activity
+              </button>
+            </li>
+            <li>
+              <button @click="open('tattoo')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-pen-fancy text-[#fd1f4a]"></i> Tattoo
+              </button>
+            </li>
+            <li>
+              <button @click="open('hair-braiding')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-cut text-[#fd1f4a]"></i> Hair Braiding
+              </button>
+            </li>
+            <li>
+              <button @click="open('nail-art')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-hand-sparkles text-[#fd1f4a]"></i> Nail Art / Mini Parlor
+              </button>
+            </li>
+            <li>
+              <button @click="open('face-painting')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-palette text-[#fd1f4a]"></i> Face Painting
+              </button>
+            </li>
+            <li>
+              <button @click="open('portrait')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-portrait text-[#fd1f4a]"></i> Portrait Artist
+              </button>
+            </li>
+            <li>
+              <button @click="open('magician')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-hat-wizard text-[#fd1f4a]"></i> Magician
+              </button>
+            </li>
+            <li>
+              <button @click="open('astrologer')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-moon text-[#fd1f4a]"></i> Astrologer
+              </button>
+            </li>
+            <li>
+              <button @click="open('canvas')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-paint-brush text-[#fd1f4a]"></i> Canvas Paintings
+              </button>
+            </li>
+            <li>
+              <button @click="open('bracelet')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-ring text-[#fd1f4a]"></i> Handmade Bracelet Making
+              </button>
+            </li>
+            <li>
+              <button @click="open('mehndi')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-hand-holding-heart text-[#fd1f4a]"></i> Mehndi Artist
+              </button>
+            </li>
+            <li>
+              <button @click="open('craft')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-pencil-ruler text-[#fd1f4a]"></i> Craft Activity
+              </button>
+            </li>
+            <li>
+              <button @click="open('pottery')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-mug-hot text-[#fd1f4a]"></i> Pottery Making
+              </button>
+            </li>
+            <li>
+              <button @click="open('puppet-show')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-child text-[#fd1f4a]"></i> Puppet Show
+              </button>
+            </li>
+            <li>
+              <button @click="open('science-show')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-flask text-[#fd1f4a]"></i> Science Show
+              </button>
+            </li>
+            <li>
+              <button @click="open('mascots')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-mask text-[#fd1f4a]"></i> Mascots
+              </button>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Games & Entertainment -->
+        <article class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6 text-[#fd1f4a]"><i class="fas fa-gamepad text-4xl"></i></div>
+          <h3 class="text-2xl font-semibold mb-4 text-black text-center">Games & Entertainment</h3>
+          <ul class="space-y-2 text-gray-700 text-base leading-relaxed max-h-64 overflow-y-auto pr-2">
+            <li>
+              <button @click="open('bounce')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-child text-[#fd1f4a]"></i> Big Bounce
+              </button>
+            </li>
+            <li>
+              <button @click="open('trampoline')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-running text-[#fd1f4a]"></i> Trampoline
+              </button>
+            </li>
+            <li>
+              <button @click="open('toy-catcher')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-gamepad text-[#fd1f4a]"></i> Toy Catcher Game Machine
+              </button>
+            </li>
+            <li>
+              <button @click="open('electronic-basketball')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-basketball-ball text-[#fd1f4a]"></i> Electronic Basketball Game
+              </button>
+            </li>
+            <li>
+              <button @click="open('bioscope')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-film text-[#fd1f4a]"></i> Bioscope
+              </button>
+            </li>
+            <li>
+              <button @click="open('mini-golf')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-golf-ball text-[#fd1f4a]"></i> Mini Golf
+              </button>
+            </li>
+            <li>
+              <button @click="open('air-ball')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-circle text-[#fd1f4a]"></i> Air Ball Pool
+              </button>
+            </li>
+            <li>
+              <button @click="open('pyramid')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-cube text-[#fd1f4a]"></i> Break the Pyramid
+              </button>
+            </li>
+            <li>
+              <button @click="open('hopla')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-dice text-[#fd1f4a]"></i> Hopla Games
+              </button>
+            </li>
+            <li>
+              <button @click="open('megawire')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-walking text-[#fd1f4a]"></i> Megawire
+              </button>
+            </li>
+            <li>
+              <button @click="open('snacks')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-candy-cane text-[#fd1f4a]"></i> Popcorn and Candy Floss
+              </button>
+            </li>
+            <li>
+              <button @click="open('jenga')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-cubes text-[#fd1f4a]"></i> Giant Jenga Game
+              </button>
+            </li>
+            <li>
+              <button @click="open('ludo')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-dice-d20 text-[#fd1f4a]"></i> Giant Ludo
+              </button>
+            </li>
+            <li>
+              <button @click="open('pool')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-circle text-[#fd1f4a]"></i> Pool Table
+              </button>
+            </li>
+            <li>
+              <button @click="open('poker')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-dice text-[#fd1f4a]"></i> Poker Game
+              </button>
+            </li>
+            <li>
+              <button @click="open('dart')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-bullseye text-[#fd1f4a]"></i> Dart Football Game
+              </button>
+            </li>
+            <li>
+              <button @click="open('shooting')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-crosshairs text-[#fd1f4a]"></i> Shooting Game
+              </button>
+            </li>
+            <li>
+              <button @click="open('foosball')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-futbol text-[#fd1f4a]"></i> Foosball Game
+              </button>
+            </li>
+            <li>
+              <button @click="open('more-games')" class="flex items-center gap-2 w-full text-left hover:underline">
+                <i class="fas fa-plus-circle text-[#fd1f4a]"></i> Many More New Games
+              </button>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div
+    x-show="openModal !== null"
+    class="fixed inset-0 z-50 bg-black bg-opacity-80 flex flex-col items-center justify-center p-4"
+  >
+    <button 
+      @click="close()" 
+      class="absolute top-4 right-4 text-white text-3xl hover:text-[#fd1f4a]" 
+      aria-label="Close"
+    >&times;</button>
+
+    <h2 class="text-white text-2xl font-semibold mb-4" x-text="titles[openModal]"></h2>
+
+    <div class="relative">
+      <img 
+        :src="galleries[openModal][currentIndex]" 
+        class="max-h-[60vh] max-w-full object-contain rounded-lg" 
+        alt="" 
+      />
+      <button 
+        @click="prev()" 
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 p-2 rounded-full"
+        aria-label="Previous"
       >
-        <div class="flex items-center justify-center mb-6 text-[#fd1f4a]">
-          <i class="fas fa-birthday-cake text-4xl group-hover:scale-110 transition-transform duration-300"></i>
-        </div>
-        <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Celebrations</h3>
-        <ul class="text-gray-700 space-y-2 text-base list-none leading-relaxed">
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-cake-candles text-[#fd1f4a]"></i>
-            <span>Birthdays</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-baby text-[#fd1f4a]"></i>
-            <span>Baby Showers</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-heart text-[#fd1f4a]"></i>
-            <span>Anniversaries</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-house text-[#fd1f4a]"></i>
-            <span>House Parties</span>
-          </li>
-        </ul>
-      </article>
-
-      <!-- Activities -->
-      <article 
-        tabindex="0" 
-        class="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] hover-card"
-        data-aos="fade-up"
-        data-aos-delay="400"
+        <i class="fas fa-chevron-left text-white text-xl"></i>
+      </button>
+      <button 
+        @click="next()" 
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 p-2 rounded-full"
+        aria-label="Next"
       >
-        <div class="flex items-center justify-center mb-6 text-[#fd1f4a]">
-          <i class="fas fa-paint-brush text-4xl group-hover:scale-110 transition-transform duration-300"></i>
-        </div>
-        <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Activities</h3>
-        <ul class="text-gray-700 space-y-2 text-base list-none leading-relaxed">
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-face-smile text-[#fd1f4a]"></i>
-            <span>Face Painting</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-pencil text-[#fd1f4a]"></i>
-            <span>Caricature</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-stamp text-[#fd1f4a]"></i>
-            <span>Temporary Tattoos</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-gamepad text-[#fd1f4a]"></i>
-            <span>Games</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-palette text-[#fd1f4a]"></i>
-            <span>Art &amp; Craft</span>
-          </li>
-        </ul>
-      </article>
+        <i class="fas fa-chevron-right text-white text-xl"></i>
+      </button>
+    </div>
 
-      <!-- Decor & Add-ons -->
-      <article 
-        tabindex="0" 
-        class="group bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] hover-card"
-        data-aos="fade-up"
-        data-aos-delay="500"
-      >
-        <div class="flex items-center justify-center mb-6 text-[#fd1f4a]">
-          <i class="fas fa-music text-4xl group-hover:scale-110 transition-transform duration-300"></i>
-        </div>
-        <h3 class="text-2xl font-semibold mb-4 text-black tracking-wide">Decor & Add-ons</h3>
-        <ul class="text-gray-700 space-y-2 text-base list-none leading-relaxed">
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-balloon text-[#fd1f4a]"></i>
-            <span>Balloon Arches</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-wand-magic-sparkles text-[#fd1f4a]"></i>
-            <span>Custom Themes</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-user-tie text-[#fd1f4a]"></i>
-            <span>Host</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-music text-[#fd1f4a]"></i>
-            <span>Music</span>
-          </li>
-          <li class="flex items-center space-x-2">
-            <i class="fas fa-camera text-[#fd1f4a]"></i>
-            <span>Photographer</span>
-          </li>
-        </ul>
-      </article>
+    <div class="flex space-x-2 mt-4">
+      <template x-for="(img, i) in galleries[openModal]" :key="i">
+        <button 
+          @click="currentIndex = i" 
+          :class="{'bg-white': i === currentIndex, 'bg-white/50': i !== currentIndex}" 
+          class="w-3 h-3 rounded-full"
+          aria-label="Slide dot"
+        ></button>
+      </template>
     </div>
   </div>
-</section>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('servicesApp', () => ({
+        openModal: null,
+        currentIndex: 0,
+        titles: {
+          'theme-party': 'Theme Party Design & Decor',
+          'artists-management': 'Artists Management',
+          'team-building': 'Team Building',
+          'party-planner': 'Party Planner & Organizer',
+          'games-activities': 'Games & Activities',
+          'youth-fest': 'Youth & College Fest Curation',
+          'corporate': 'Corporate & Brand Experiences',
+          'custom-experiences': 'Custom Experiences',
+          'theme-decor': 'Theme Decor',
+          'balloon-arches': 'Balloon Arches',
+          'custom-themes': 'Custom Themes',
+          'custom-backdrops': 'Custom Backdrops',
+          'entrance-arches': 'Entrance Arches',
+          'table-styling': 'Table & Chair Styling',
+          'multi-cuisine': 'Multi-Cuisine Food',
+          'dessert-counters': 'Dessert & Ice Cream Counters',
+          'kids-snack': 'Kids\' Snack Zone',
+          'live-food': 'Live Food Stalls',
+          'snacks': 'Popcorn & Candy Floss',
+          'photographer': 'Photography & Videography',
+          'music-dj': 'Music / DJ Setup',
+          'host': 'Host / Emcee',
+          'lights-sound': 'Lights & Sound Setup',
+          'security': 'Security & Bouncers',
+          'caricature': 'Caricature Activity',
+          'tattoo': 'Tattoo',
+          'hair-braiding': 'Hair Braiding',
+          'nail-art': 'Nail Art / Mini Parlor',
+          'face-painting': 'Face Painting',
+          'portrait': 'Portrait Artist',
+          'magician': 'Magician',
+          'astrologer': 'Astrologer',
+          'canvas': 'Canvas Paintings',
+          'bracelet': 'Handmade Bracelet Making',
+          'mehndi': 'Mehndi Artist',
+          'craft': 'Craft Activity',
+          'pottery': 'Pottery Making',
+          'puppet-show': 'Puppet Show',
+          'science-show': 'Science Show',
+          'mascots': 'Mascots',
+          'bounce': 'Big Bounce',
+          'trampoline': 'Trampoline',
+          'toy-catcher': 'Toy Catcher Game Machine',
+          'electronic-basketball': 'Electronic Basketball Game',
+          'bioscope': 'Bioscope',
+          'mini-golf': 'Mini Golf',
+          'air-ball': 'Air Ball Pool',
+          'pyramid': 'Break the Pyramid',
+          'hopla': 'Hopla Games',
+          'megawire': 'Megawire',
+          'jenga': 'Giant Jenga Game',
+          'ludo': 'Giant Ludo',
+          'pool': 'Pool Table',
+          'poker': 'Poker Game',
+          'dart': 'Dart Football Game',
+          'shooting': 'Shooting Game',
+          'foosball': 'Foosball Game',
+          'more-games': 'Many More New Games'
+        },
+        galleries: {
+          'theme-party': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'artists-management': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'team-building': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'party-planner': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'games-activities': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'youth-fest': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'corporate': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'custom-experiences': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'theme-decor': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'balloon-arches': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'custom-themes': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'custom-backdrops': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'entrance-arches': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'table-styling': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'multi-cuisine': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'dessert-counters': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'kids-snack': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'live-food': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'snacks': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'photographer': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'music-dj': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'host': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'lights-sound': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'security': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'caricature': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'tattoo': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'hair-braiding': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'nail-art': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'face-painting': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'portrait': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'magician': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'astrologer': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'canvas': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'bracelet': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'mehndi': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'craft': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'pottery': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'puppet-show': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'science-show': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'mascots': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'bounce': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'trampoline': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'toy-catcher': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'electronic-basketball': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'bioscope': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'mini-golf': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'air-ball': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'pyramid': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'hopla': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'megawire': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'jenga': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'ludo': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'pool': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'poker': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'dart': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'shooting': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'foosball': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ],
+          'more-games': [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZHNjYXBlfGVufDB8fDB8fHww'
+          ]
+        },
+        open(key) {
+          this.openModal = key;
+          this.currentIndex = 0;
+          document.body.classList.add('modal-open');
+        },
+        close() {
+          this.openModal = null;
+          document.body.classList.remove('modal-open');
+        },
+        prev() {
+          this.currentIndex = (this.currentIndex + this.galleries[this.openModal].length - 1) %
+                              this.galleries[this.openModal].length;
+        },
+        next() {
+          this.currentIndex = (this.currentIndex + 1) %
+                              this.galleries[this.openModal].length;
+        }
+      }));
+    });
+
+    // Initialize AOS
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+    });
+  </script>
 
 <!--Gallery -->
 <section id="gallery" class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-24" aria-labelledby="gallery-heading">

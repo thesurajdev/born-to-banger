@@ -1972,331 +1972,148 @@
       });
     </script>
 
-    <!--Gallery -->
-    <section
-      id="gallery"
-      class="max-w-6xl mx-auto px-6 sm:px-12 lg:px-24 py-24"
-      aria-labelledby="gallery-heading"
+<!-- Gallery Section -->
+<section id="gallery" class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold text-center mb-4">Gallery</h2>
+  <p class="text-center text-gray-600 mb-8">
+    Explore our favorite moments from celebrations and events.
+  </p>
+
+  <!-- Gallery Grid -->
+  <div id="gallery-grid" class="columns-2 md:columns-3 gap-4 space-y-4">
+    <!-- Initial images will be injected here -->
+  </div>
+
+  <!-- Load More Button -->
+  <div class="flex justify-center mt-10">
+    <button
+      id="load-more-btn"
+      class="bg-pink-600 text-white px-6 py-3 rounded-full font-medium hover:bg-pink-700 transition"
     >
-      <h2
-        id="gallery-heading"
-        class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text"
-        data-aos="fade-up"
-      >
-        Gallery
-      </h2>
-      <p
-        class="text-center text-gray-700 mb-8 max-w-xl mx-auto"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        Explore our vibrant moments captured from unforgettable celebrations and
-        themed parties.
-      </p>
+      Load More
+    </button>
+    <p id="completion-message" class="hidden text-gray-500 mt-2">
+      You've reached the end! 🎉
+    </p>
+  </div>
 
-      <!-- Filter Buttons -->
-      <div
-        class="flex flex-wrap justify-center gap-4 mb-12"
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
-        <button
-          data-filter="all"
-          class="filter-btn bg-[#fd1f4a] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#e2173d] focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105"
-          aria-pressed="true"
-        >
-          All
-        </button>
-        <button
-          data-filter="birthdays"
-          class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105"
-        >
-          Birthdays
-        </button>
-        <button
-          data-filter="activities"
-          class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105"
-        >
-          Activities
-        </button>
-        <button
-          data-filter="decor"
-          class="filter-btn bg-gray-200 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fd1f4a] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105"
-        >
-          Decor
-        </button>
-      </div>
+  <!-- Modal Lightbox -->
+  <div
+    id="modal"
+    class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-50"
+  >
+    <button
+      id="modal-close"
+      class="absolute top-6 right-6 text-white text-4xl font-bold"
+    >
+      &times;
+    </button>
+    <img
+      id="modal-img"
+      src=""
+      alt=""
+      class="max-w-full max-h-full rounded-lg shadow-lg"
+    />
+  </div>
+</section>
 
-      <!-- Masonry Grid -->
-      <div
-        id="gallery-grid"
-        class="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4"
-        data-aos="fade-up"
-        data-aos-delay="400"
-      >
-        <!-- Initial Images -->
-        <div class="break-inside-avoid">
-          <img
-            src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Birthday party setup"
-            loading="lazy"
-            data-category="birthdays"
-            class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105"
-          />
-        </div>
-        <div class="break-inside-avoid">
-          <img
-            src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Birthday cake and party"
-            loading="lazy"
-            data-category="birthdays"
-            class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105"
-          />
-        </div>
-        <div class="break-inside-avoid">
-          <img
-            src="https://images.unsplash.com/photo-1601042879364-f3947af7d9d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Kids birthday party"
-            loading="lazy"
-            data-category="birthdays"
-            class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105"
-          />
-        </div>
-        <div class="break-inside-avoid">
-          <img
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-            alt="Face painting activity"
-            loading="lazy"
-            data-category="activities"
-            class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105"
-          />
-        </div>
-        <div class="break-inside-avoid">
-          <img
-            src="https://images.unsplash.com/photo-1514525253161-7a3d1f68abf3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Temporary tattoo art"
-            loading="lazy"
-            data-category="activities"
-            class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105"
-          />
-        </div>
-        <div class="break-inside-avoid">
-          <img
-            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Caricature artist at work"
-            loading="lazy"
-            data-category="activities"
-            class="w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105"
-          />
-        </div>
-      </div>
+<script>
+  const galleryImages = [
+    // Add your image objects here
+    {
+      src: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=2070&q=80",
+      alt: "Birthday party setup",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=2070&q=80",
+      alt: "Birthday cake and party",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1601042879364-f3947af7d9d9?auto=format&fit=crop&w=2070&q=80",
+      alt: "Kids birthday party",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2069&q=80",
+      alt: "Face painting activity",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1514525253161-7a3d1f68abf3?auto=format&fit=crop&w=2070&q=80",
+      alt: "Temporary tattoo art",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=2070&q=80",
+      alt: "Caricature artist",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1515169067864-2a48f735ccb1?auto=format&fit=crop&w=2070&q=80",
+      alt: "Theme decor",
+    },
+  ];
 
-      <!-- Load More Button / Completion Message -->
-      <div
-        class="flex justify-center mt-12"
-        data-aos="fade-up"
-        data-aos-delay="500"
-      >
-        <button
-          id="load-more-btn"
-          class="bg-[#fd1f4a] text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-[#e2173d] focus:outline-none focus:ring-4 focus:ring-[#fd1f4a] transition-all duration-300 transform hover:scale-105"
-        >
-          See More
-        </button>
-        <p
-          id="completion-message"
-          class="hidden text-gray-600 text-lg font-semibold"
-        >
-          You've reached the end of our gallery! 🎉
-        </p>
-      </div>
+  const imagesPerLoad = 3;
+  let currentIndex = 0;
+  const galleryGrid = document.getElementById("gallery-grid");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  const completionMessage = document.getElementById("completion-message");
 
-      <!-- Modal Lightbox -->
-      <div
-        id="modal"
-        class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-50"
-      >
-        <button
-          id="modal-close"
-          class="absolute top-8 right-8 text-white text-4xl font-bold focus:outline-none hover:text-pinkAccent transition-colors duration-300"
-        >
-          &times;
-        </button>
-        <img
-          id="modal-img"
-          src=""
-          alt=""
-          class="max-w-full max-h-full rounded-lg shadow-lg"
-        />
-      </div>
-    </section>
+  function createImageElement({ src, alt }) {
+    const div = document.createElement("div");
+    div.className = "break-inside-avoid";
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = alt;
+    img.loading = "lazy";
+    img.className =
+      "w-full rounded-lg cursor-pointer hover:brightness-90 transition duration-300 hover:scale-105";
 
-    <script>
-      // Gallery images data
-      const galleryImages = [
-        {
-          src: "https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Birthday party setup",
-          category: "birthdays",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Birthday cake and party",
-          category: "birthdays",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1601042879364-f3947af7d9d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Kids birthday party",
-          category: "birthdays",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-          alt: "Face painting activity",
-          category: "activities",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1514525253161-7a3d1f68abf3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Temporary tattoo art",
-          category: "activities",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Caricature artist at work",
-          category: "activities",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Balloon arch decor",
-          category: "decor",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1515169067864-2a48f735ccb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          alt: "Custom theme decor",
-          category: "decor",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-          alt: "Party table setup",
-          category: "decor",
-        },
-      ];
-
-      let currentIndex = 6; // Start after initial 6 images
-      const imagesPerLoad = 3; // Load 3 images at a time
-      const loadMoreBtn = document.getElementById("load-more-btn");
-      const completionMessage = document.getElementById("completion-message");
-      const galleryGrid = document.getElementById("gallery-grid");
-      const filterButtons = document.querySelectorAll(".filter-btn");
-      let currentFilter = "all";
-
-      // Function to create image element
-      function createImageElement(image) {
-        const div = document.createElement("div");
-        div.className = "break-inside-avoid";
-        div.style.animation = "fadeIn 0.5s ease forwards";
-
-        const img = document.createElement("img");
-        img.src = image.src;
-        img.alt = image.alt;
-        img.loading = "lazy";
-        img.dataset.category = image.category;
-        img.className =
-          "w-full rounded-lg cursor-pointer hover:brightness-90 transition-all duration-300 transform hover:scale-105";
-
-        img.addEventListener("click", () => {
-          const modal = document.getElementById("modal");
-          const modalImg = document.getElementById("modal-img");
-          modalImg.src = img.src;
-          modalImg.alt = img.alt;
-          modal.classList.remove("opacity-0", "pointer-events-none");
-          modal.classList.add("opacity-100", "pointer-events-auto");
-          document.body.style.overflow = "hidden";
-        });
-
-        div.appendChild(img);
-        return div;
-      }
-
-      // Function to load more images
-      function loadMoreImages() {
-        const endIndex = Math.min(
-          currentIndex + imagesPerLoad,
-          galleryImages.length
-        );
-        const imagesToAdd = galleryImages.slice(currentIndex, endIndex);
-
-        imagesToAdd.forEach((image) => {
-          if (currentFilter === "all" || image.category === currentFilter) {
-            galleryGrid.appendChild(createImageElement(image));
-          }
-        });
-
-        currentIndex = endIndex;
-
-        if (currentIndex >= galleryImages.length) {
-          loadMoreBtn.classList.add("hidden");
-          completionMessage.classList.remove("hidden");
-        }
-      }
-
-      // Load More button click handler
-      loadMoreBtn.addEventListener("click", loadMoreImages);
-
-      // Filter button click handler
-      filterButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          // Update button styles
-          filterButtons.forEach((b) => {
-            b.classList.remove("bg-[#fd1f4a]", "text-white");
-            b.classList.add("bg-gray-200", "text-black");
-            b.setAttribute("aria-pressed", "false");
-          });
-          btn.classList.remove("bg-gray-200", "text-black");
-          btn.classList.add("bg-[#fd1f4a]", "text-white");
-          btn.setAttribute("aria-pressed", "true");
-
-          // Update filter and reset gallery
-          currentFilter = btn.getAttribute("data-filter");
-          galleryGrid.innerHTML = "";
-          currentIndex = 0;
-
-          // Reset button state
-          loadMoreBtn.classList.remove("hidden");
-          completionMessage.classList.add("hidden");
-
-          // Load initial images for the selected filter
-          const initialImages = galleryImages
-            .slice(0, 6)
-            .filter(
-              (image) =>
-                currentFilter === "all" || image.category === currentFilter
-            );
-
-          initialImages.forEach((image) => {
-            galleryGrid.appendChild(createImageElement(image));
-          });
-
-          currentIndex = 6;
-        });
-      });
-
-      // Modal close handler
+    img.addEventListener("click", () => {
       const modal = document.getElementById("modal");
-      const modalClose = document.getElementById("modal-close");
+      const modalImg = document.getElementById("modal-img");
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.classList.remove("opacity-0", "pointer-events-none");
+      modal.classList.add("opacity-100", "pointer-events-auto");
+      document.body.style.overflow = "hidden";
+    });
 
-      modalClose.addEventListener("click", () => {
-        modal.classList.remove("opacity-100", "pointer-events-auto");
-        modal.classList.add("opacity-0", "pointer-events-none");
-        document.body.style.overflow = "";
-      });
+    div.appendChild(img);
+    return div;
+  }
 
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modalClose.click();
-        }
-      });
-    </script>
+  function loadMoreImages() {
+    const end = Math.min(currentIndex + imagesPerLoad, galleryImages.length);
+    const newImages = galleryImages.slice(currentIndex, end);
+    newImages.forEach((image) => {
+      galleryGrid.appendChild(createImageElement(image));
+    });
 
+    currentIndex = end;
+
+    if (currentIndex >= galleryImages.length) {
+      loadMoreBtn.classList.add("hidden");
+      completionMessage.classList.remove("hidden");
+    }
+  }
+
+  loadMoreBtn.addEventListener("click", loadMoreImages);
+  loadMoreImages(); // Load initial images
+
+  // Modal logic
+  const modal = document.getElementById("modal");
+  const modalClose = document.getElementById("modal-close");
+
+  modalClose.addEventListener("click", () => {
+    modal.classList.remove("opacity-100", "pointer-events-auto");
+    modal.classList.add("opacity-0", "pointer-events-none");
+    document.body.style.overflow = "";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modalClose.click();
+    }
+  });
+</script>
     <!--Testimonial-->
     <section
       id="testimonials"

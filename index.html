@@ -949,6 +949,129 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+      <!-- Artist Carousel Section -->
+<section
+  id="artists"
+class="h-[70vh] w-full px-6 sm:px-12 lg:px-24 py-24 text-center relative"
+  aria-labelledby="artists-heading"
+>
+      <h2
+        id="about-heading"
+        class="text-4xl font-extrabold mb-4 text-black text-center tracking-tight gradient-text"
+        data-aos="fade-up"
+      >
+    Our Talented Artists
+  </h2>
+  <p class="text-gray-800 text-lg leading-relaxed mb-10 max-w-3xl mx-auto">
+    These talented individuals bring creativity and excitement to your events.
+    Get to know the artists behind the magic.
+  </p>
+
+  <!-- Carousel Wrapper -->
+  <div class="w-full flex items-center">
+    <div class="swiper artistSwiper w-full">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide px-2">
+          <div class="relative overflow-hidden rounded-xl shadow-lg">
+            <div class="aspect-[3/4] w-full">
+              <img
+                src="https://borntobanger.surajdev.com/Media/Artists/Heeba%20Khan.jpg"
+                alt="Heeba Khan"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-full px-4 py-2
+                     bg-[linear-gradient(to_top,black_0%,black_50%,transparent_100%)]
+                     text-white text-center text-base font-semibold"
+            >
+              Heeba Khan
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide px-2">
+          <div class="relative overflow-hidden rounded-xl shadow-lg">
+            <div class="aspect-[3/4] w-full">
+              <img
+                src="https://borntobanger.surajdev.com/Media/Artists/Ayushi%20Malik.jpg"
+                alt="Ayushi Malik"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-full px-4 py-2
+                     bg-[linear-gradient(to_top,black_0%,black_50%,transparent_100%)]
+                     text-white text-center text-base font-semibold"
+            >
+              Ayushi Malik
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide px-2">
+          <div class="relative overflow-hidden rounded-xl shadow-lg">
+            <div class="aspect-[3/4] w-full">
+              <img
+                src="https://borntobanger.surajdev.com/Media/Artists/Palak%20Gola.jpg"
+                alt="Palak Gola"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-full px-4 py-2
+                     bg-[linear-gradient(to_top,black_0%,black_50%,transparent_100%)]
+                     text-white text-center text-base font-semibold"
+            >
+              Palak Gola
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Repeat similar slides for 6 total -->
+        <!-- You can replace captions per artist here -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SwiperJS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Swiper Init Script -->
+<script>
+  new Swiper('.artistSwiper', {
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    loop: true,
+    speed: 500,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      1024: {
+        slidesPerView: 4,
+      },
+    },
+  });
+</script>
+
+    
     <!-- Parallax Section -->
     <section class="relative h-[40vh] w-full overflow-hidden">
       <!-- Decorative line -->
